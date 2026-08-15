@@ -1,0 +1,48 @@
+# Secrets / config
+.env
+*.env
+!.env.example
+
+# Personal data & databases — never commit real health data
+data/*.db
+data/*.sqlite
+data/*.sqlite3
+data/tokens/
+data/imports/
+data/raw/
+*.db
+*.sqlite
+
+# Apple Health / Sports Tracker / clinical raw files — never commit
+*.fit
+*.gpx
+*export.xml
+apple_health_export/
+*health*export*.zip
+*sportstracker*.zip
+*avonova*
+*.pdf
+!docs/**/*.pdf
+
+# Body composition / lab reports (generic patterns, belt-and-braces)
+*lab_report*
+*bodycomp*
+
+# Python
+__pycache__/
+*.pyc
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+*.egg-info/
+.coverage
+htmlcov/
+.venv/
+venv/
+dist/
+build/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
