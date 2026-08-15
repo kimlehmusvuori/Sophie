@@ -92,6 +92,66 @@ def test_ambiguous_when_multiple_candidates(db_session):
     assert result.session_results[0].matched_workout_id is None
 
 
+def test_adjacent_easy_and_long_sessions_do_not_cross_match(db_session):
+    """Regression test: a planned easy run (Friday) and long run (Saturday)
+    are only 1 day apart, well inside the +/-2 day matching window, so each
+    session's candidate list previously included both actual workouts and
+    was wrongly flagged "ambiguous". An exact-date match must always win."""
+    profile = profile_repo.get_or_create_profile(db_session)
+    plan = planning_repo.create_plan(
+        db_session, profile.id, week_start=date(2026, 8, 10), state="approved"
+    )
+    planning_repo.add_session(
+        db_session, plan.id, date=date(2026, 8, 14), session_type="easy", distance_m=8000
+    )
+    planning_repo.add_session(
+        db_session, plan.id, date=date(2026, 8, 15), session_type="long", distance_m=15000
+    )
+    workout_repo.create_canonical_workout(
+        db_session,
+        profile_id=profile.id,
+        activity_type="run",
+        start_at=datetime(2026, 8, 14, 9, 0),
+        distance_m=8000,
+    )
+    workout_repo.create_canonical_workout(
+        db_session,
+        profile_id=profile.id,
+        activity_type="run",
+        start_at=datetime(2026, 8, 15, 9, 0),
+        distance_m=15000,
+    )
+
+    result = match_plan_to_actuals(db_session, plan.id, profile.id)
+    statuses = {r.status for r in result.session_results}
+    assert statuses == {"completed"}
+    assert result.extra_unplanned_workout_ids == []
+
+
+def test_genuinely_tied_distance_is_still_ambiguous(db_session):
+    """No workout falls exactly on the planned date, but two candidates are
+    equally close (1 day before and 1 day after) — this remains ambiguous."""
+    profile = profile_repo.get_or_create_profile(db_session)
+    plan = _make_plan_with_session(db_session, profile.id, date(2026, 8, 22), "easy", 8000)
+    workout_repo.create_canonical_workout(
+        db_session,
+        profile_id=profile.id,
+        activity_type="run",
+        start_at=datetime(2026, 8, 21, 9, 0),
+        distance_m=8000,
+    )
+    workout_repo.create_canonical_workout(
+        db_session,
+        profile_id=profile.id,
+        activity_type="run",
+        start_at=datetime(2026, 8, 23, 9, 0),
+        distance_m=8000,
+    )
+
+    result = match_plan_to_actuals(db_session, plan.id, profile.id)
+    assert result.session_results[0].status == "ambiguous"
+
+
 def test_extra_unplanned_workout_reported(db_session):
     profile = profile_repo.get_or_create_profile(db_session)
     plan = _make_plan_with_session(db_session, profile.id, date(2026, 8, 22), "easy", 8000)

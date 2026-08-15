@@ -3,7 +3,7 @@ docs/PRODUCT_SPEC.md §45 Steps A-H."""
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, timedelta
 
 import streamlit as st
 
@@ -18,6 +18,7 @@ from sophie.services import (
     calendar_context,
     data_status,
     health_intelligence,
+    plan_vs_actual,
     sunday_review,
     weather_service,
 )
@@ -25,6 +26,14 @@ from sophie.services import (
     coach as coach_service,
 )
 from sophie.ui.streamlit.errors import safe_action
+
+_STATUS_ICON = {
+    "completed": "✅",
+    "partial": "🟡",
+    "moved": "↔️",
+    "missed": "❌",
+    "ambiguous": "❓",
+}
 
 
 def render(profile_id: str) -> None:
@@ -48,6 +57,29 @@ def render(profile_id: str) -> None:
         col1.metric("Planned distance", f"{last_week.planned_km or 0:.1f} km")
         col2.metric("Actual distance", f"{last_week.actual_km or 0:.1f} km")
         st.write(last_week.completion_note or "No prior plan on file.")
+
+        prior_plan = planning_repo.get_plan_for_week(
+            session, profile_id, week_start - timedelta(days=7)
+        )
+        if prior_plan is not None:
+            with safe_action("Could not compute plan-vs-actual"):
+                pva = plan_vs_actual.match_plan_to_actuals(session, prior_plan.id, profile_id)
+                sessions_by_id = {
+                    s.id: s for s in planning_repo.list_sessions_for_plan(session, prior_plan.id)
+                }
+                for match in pva.session_results:
+                    planned_session = sessions_by_id.get(match.session_id)
+                    if planned_session is None:
+                        continue
+                    icon = _STATUS_ICON.get(match.status, "⚪")
+                    st.write(
+                        f"{icon} {planned_session.date} — {planned_session.session_type}: "
+                        f"**{match.status}**"
+                    )
+                if pva.extra_unplanned_workout_ids:
+                    st.caption(
+                        f"{len(pva.extra_unplanned_workout_ids)} extra unplanned workout(s) logged."
+                    )
 
         snapshot = health_intelligence.refresh_all_health_intelligence(session, profile_id, today)
         col1, col2 = st.columns(2)
@@ -155,8 +187,6 @@ def render(profile_id: str) -> None:
 
         if settings.weather_configured and st.button("Refresh weather for next week"):
             with safe_action("Could not fetch weather"):
-                from datetime import timedelta
-
                 weather_service.refresh_weather_for_range(
                     session,
                     profile_id,

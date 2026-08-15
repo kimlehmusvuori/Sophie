@@ -81,14 +81,15 @@ def match_plan_to_actuals(
         if not matches:
             status = "missed"
             matched_id = None
-        elif len(matches) > 1:
-            status = "ambiguous"
-            matched_id = None
         else:
-            workout = matches[0]
-            matched_id = workout.id
-            consumed_ids.add(workout.id)
-            status = _classify_single_match(planned, workout)
+            best = _closest_unambiguous_match(planned, matches)
+            if best is None:
+                status = "ambiguous"
+                matched_id = None
+            else:
+                matched_id = best.id
+                consumed_ids.add(best.id)
+                status = _classify_single_match(planned, best)
 
         planned.completion_status = status
         planned.matched_workout_id = matched_id
@@ -100,6 +101,32 @@ def match_plan_to_actuals(
 
     extras = [w.id for w in candidate_workouts if w.id not in consumed_ids]
     return PlanVsActualResult(session_results=results, extra_unplanned_workout_ids=extras)
+
+
+def _closest_unambiguous_match(
+    planned: SessionModel, matches: list[CanonicalWorkout]
+) -> CanonicalWorkout | None:
+    """A same-activity-type candidate exactly on the planned date is always
+    unambiguous. Otherwise, among same-day-distance-tied candidates outside
+    the exact date, only a single strictly-closest-by-date candidate counts
+    as unambiguous — a genuine tie (or no candidate on the planned date with
+    multiple equally-distant others) is reported as "ambiguous" rather than
+    guessed at, per docs/PRODUCT_SPEC.md §52."""
+
+    on_date = [w for w in matches if w.start_at.date() == planned.date]
+    if len(on_date) == 1:
+        return on_date[0]
+    if len(on_date) > 1:
+        return None
+
+    by_distance = sorted(matches, key=lambda w: abs((w.start_at.date() - planned.date).days))
+    closest_distance = abs((by_distance[0].start_at.date() - planned.date).days)
+    closest = [
+        w for w in by_distance if abs((w.start_at.date() - planned.date).days) == closest_distance
+    ]
+    if len(closest) == 1:
+        return closest[0]
+    return None
 
 
 def _classify_single_match(planned: SessionModel, workout: CanonicalWorkout) -> str:
