@@ -28,7 +28,7 @@ def test_completed_session_matches_same_day_workout(db_session):
     workout_repo.create_canonical_workout(
         db_session,
         profile_id=profile.id,
-        activity_type="easy",
+        activity_type="run",
         start_at=datetime(2026, 8, 22, 9, 0),
         distance_m=8100,
     )
@@ -51,7 +51,7 @@ def test_moved_session_matches_nearby_day(db_session):
     workout_repo.create_canonical_workout(
         db_session,
         profile_id=profile.id,
-        activity_type="easy",
+        activity_type="run",
         start_at=datetime(2026, 8, 23, 9, 0),
         distance_m=8000,
     )
@@ -66,7 +66,7 @@ def test_partial_when_actual_much_shorter(db_session):
     workout_repo.create_canonical_workout(
         db_session,
         profile_id=profile.id,
-        activity_type="long",
+        activity_type="run",
         start_at=datetime(2026, 8, 22, 9, 0),
         distance_m=6000,
     )
@@ -82,7 +82,7 @@ def test_ambiguous_when_multiple_candidates(db_session):
         workout_repo.create_canonical_workout(
             db_session,
             profile_id=profile.id,
-            activity_type="easy",
+            activity_type="run",
             start_at=datetime(2026, 8, 22, hour, 0),
             distance_m=8000,
         )
@@ -98,7 +98,7 @@ def test_extra_unplanned_workout_reported(db_session):
     workout_repo.create_canonical_workout(
         db_session,
         profile_id=profile.id,
-        activity_type="easy",
+        activity_type="run",
         start_at=datetime(2026, 8, 22, 9, 0),
         distance_m=8000,
     )

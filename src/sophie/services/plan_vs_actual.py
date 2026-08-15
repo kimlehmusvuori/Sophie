@@ -19,6 +19,23 @@ _DATE_WINDOW_DAYS = 2
 _DISTANCE_TOLERANCE = 0.25  # 25% either side counts as "completed as planned"
 _PARTIAL_THRESHOLD = 0.7  # actual distance below 70% of planned counts as "partial"
 
+# A planned session's `session_type` (long/quality/easy/padel/other, see
+# sophie.domain.training_block.SessionType) describes plan *intent* — the
+# actual recorded canonical_workout.activity_type is always one of
+# run/padel/cycling/tennis/strength/other (see sophie.domain.activity_types).
+# Long/quality/easy plans are all satisfied by an actual "run" workout.
+_SESSION_TYPE_TO_ACTIVITY_TYPE = {
+    "long": "run",
+    "quality": "run",
+    "easy": "run",
+    "padel": "padel",
+    "other": "other",
+}
+
+
+def _expected_activity_type(session_type: str) -> str:
+    return _SESSION_TYPE_TO_ACTIVITY_TYPE.get(session_type, session_type)
+
 
 @dataclass
 class SessionMatchResult:
@@ -52,11 +69,12 @@ def match_plan_to_actuals(
     results: list[SessionMatchResult] = []
 
     for planned in sorted(sessions, key=lambda s: s.date):
+        expected_activity_type = _expected_activity_type(planned.session_type)
         matches = [
             w
             for w in candidate_workouts
             if w.id not in consumed_ids
-            and w.activity_type == planned.session_type
+            and w.activity_type == expected_activity_type
             and abs((w.start_at.date() - planned.date).days) <= _DATE_WINDOW_DAYS
         ]
 
