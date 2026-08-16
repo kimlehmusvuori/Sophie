@@ -57,11 +57,34 @@ class _CatalogAccumulator:
     unit: str | None = None
 
 
+def _merge_intervals_to_minutes(intervals: list[tuple[datetime, datetime]]) -> float:
+    """Union of possibly-overlapping intervals, in minutes. Apple Health sleep
+    data routinely contains overlapping records for the same night — e.g. a
+    coarse "Asleep" summary from one source alongside per-stage
+    (Core/Deep/REM) breakdowns from another — naively summing each record's
+    duration double- or triple-counts the same wall-clock time. Merging to a
+    union first gives the true total distinct sleep time."""
+    if not intervals:
+        return 0.0
+    ordered = sorted(intervals, key=lambda iv: iv[0])
+    merged = [ordered[0]]
+    for start, end in ordered[1:]:
+        last_start, last_end = merged[-1]
+        if start <= last_end:
+            if end > last_end:
+                merged[-1] = (last_start, end)
+        else:
+            merged.append((start, end))
+    total_seconds = sum((end - start).total_seconds() for start, end in merged)
+    return total_seconds / 60.0
+
+
 @dataclass
 class _DailyAccumulator:
     sums: dict[str, dict[str, float]] = field(default_factory=dict)
     lists: dict[str, dict[str, list[float]]] = field(default_factory=dict)
     lasts: dict[str, dict[str, tuple[datetime, float]]] = field(default_factory=dict)
+    sleep_intervals: dict[str, list[tuple[datetime, datetime]]] = field(default_factory=dict)
 
     def add(self, field_name: str, day: str, value: float, aggregation: str, at: datetime) -> None:
         if aggregation == "sum":
@@ -75,6 +98,9 @@ class _DailyAccumulator:
             existing = last_bucket.get(day)
             if existing is None or at >= existing[0]:
                 last_bucket[day] = (at, value)
+
+    def add_sleep_interval(self, day: str, start: datetime, end: datetime) -> None:
+        self.sleep_intervals.setdefault(day, []).append((start, end))
 
     def to_samples(self) -> list[DailyQuantitySample]:
         samples: list[DailyQuantitySample] = []
@@ -95,6 +121,14 @@ class _DailyAccumulator:
                 samples.append(
                     DailyQuantitySample(day=_iso_to_date(day), field=field_name, value=last_value)
                 )
+        for day, intervals in self.sleep_intervals.items():
+            samples.append(
+                DailyQuantitySample(
+                    day=_iso_to_date(day),
+                    field="sleep_minutes",
+                    value=_merge_intervals_to_minutes(intervals),
+                )
+            )
         return samples
 
 
@@ -168,7 +202,7 @@ def _handle_category_record(
         value = elem.get("value")
         if value in SLEEP_ASLEEP_VALUES:
             wake_day = end.astimezone(UTC).date().isoformat()
-            daily.add("sleep_minutes", wake_day, duration_min, "sum", end)
+            daily.add_sleep_interval(wake_day, start, end)
     elif record_type == CATEGORY_TYPE_MINDFULNESS:
         day_key = start.astimezone(UTC).date().isoformat()
         daily.add("mindful_minutes", day_key, duration_min, "sum", start)

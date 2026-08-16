@@ -21,9 +21,13 @@ class Settings(BaseSettings):
     sophie_demo_mode: bool = Field(default=True)
     sophie_timezone: str = Field(default="Europe/Helsinki")
 
-    # LLM
+    # LLM — coach (structured plan) uses OpenAI only; chat supports any of the three below.
     openai_api_key: str | None = Field(default=None)
     openai_model: str = Field(default="gpt-4o-mini")
+    anthropic_api_key: str | None = Field(default=None)
+    anthropic_model: str = Field(default="claude-sonnet-4-5")
+    xai_api_key: str | None = Field(default=None)
+    xai_model: str = Field(default="grok-4")
 
     # Microsoft Graph / Outlook
     ms_graph_client_id: str | None = Field(default=None)
@@ -62,6 +66,13 @@ class Settings(BaseSettings):
     @property
     def llm_configured(self) -> bool:
         return bool(self.openai_api_key)
+
+    def chat_provider_configured(self, provider: str) -> bool:
+        return {
+            "anthropic": bool(self.anthropic_api_key),
+            "openai": bool(self.openai_api_key),
+            "xai": bool(self.xai_api_key),
+        }.get(provider, False)
 
     @property
     def calendar_configured(self) -> bool:

@@ -12,6 +12,8 @@ from sophie.repositories import profile_repo
 from sophie.ui.streamlit.db_bootstrap import bootstrap_database
 from sophie.ui.streamlit.errors import safe_action
 from sophie.ui.streamlit.pages import (
+    chat_page,
+    dashboard_page,
     decision_log_page,
     health_page,
     memory_page,
@@ -45,12 +47,19 @@ if settings.sophie_demo_mode:
                 seed_demo_data(demo_session)
             st.sidebar.success("Demo data generated.")
 
-page = st.sidebar.radio("Navigate", ["Sunday Review", "Health", "Memory / Config", "Decision Log"])
+page = st.sidebar.radio(
+    "Navigate",
+    ["Sunday Review", "Health", "Trends", "Chat", "Memory / Config", "Decision Log"],
+)
 
 if page == "Sunday Review":
     sunday_review_page.render(_profile_id)
 elif page == "Health":
     health_page.render(_profile_id)
+elif page == "Trends":
+    dashboard_page.render(_profile_id)
+elif page == "Chat":
+    chat_page.render(_profile_id)
 elif page == "Memory / Config":
     memory_page.render(_profile_id)
 elif page == "Decision Log":

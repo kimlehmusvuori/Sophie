@@ -78,6 +78,42 @@ def test_parse_apple_health_export_basic(tmp_path):
     assert catalog_types["NotAnAttribute"].status == "recognized_unused"
 
 
+def test_overlapping_sleep_records_are_merged_not_summed(tmp_path):
+    """Regression test: real Apple Health exports commonly contain
+    overlapping sleep records for the same night from multiple sources (e.g.
+    a coarse "Asleep" summary alongside per-stage Core/Deep/REM breakdowns
+    covering the same wall-clock time). Naively summing every record's
+    duration double-counts the overlap; merging to a union of intervals
+    gives the true ~8h, not ~13h+."""
+    xml = """<?xml version="1.0" encoding="UTF-8"?>
+<HealthData locale="en_US">
+<ExportDate value="2026-08-15 10:00:00 +0000"/>
+<Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="iPhone"
+ startDate="2026-08-01 23:00:00 +0000" endDate="2026-08-02 07:00:00 +0000"
+ value="HKCategoryValueSleepAnalysisAsleep"/>
+<Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Watch"
+ startDate="2026-08-01 23:00:00 +0000" endDate="2026-08-02 01:30:00 +0000"
+ value="HKCategoryValueSleepAnalysisAsleepCore"/>
+<Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Watch"
+ startDate="2026-08-02 01:30:00 +0000" endDate="2026-08-02 03:00:00 +0000"
+ value="HKCategoryValueSleepAnalysisAsleepDeep"/>
+<Record type="HKCategoryTypeIdentifierSleepAnalysis" sourceName="Watch"
+ startDate="2026-08-02 03:00:00 +0000" endDate="2026-08-02 07:00:00 +0000"
+ value="HKCategoryValueSleepAnalysisAsleepREM"/>
+</HealthData>
+"""
+    xml_path = tmp_path / "export.xml"
+    xml_path.write_text(xml, encoding="utf-8")
+
+    outcome = parse_apple_health_export(xml_path)
+
+    sleep_samples = [s for s in outcome.daily_samples if s.field == "sleep_minutes"]
+    assert len(sleep_samples) == 1
+    # True union is 23:00 -> 07:00 = 8h = 480min, NOT the naive sum of all four
+    # overlapping/adjacent records (8h + 2.5h + 1.5h + 4h = 16h).
+    assert sleep_samples[0].value == pytest.approx(480, rel=0.01)
+
+
 def test_parse_malformed_xml_with_zero_records_raises(tmp_path):
     xml_path = tmp_path / "export.xml"
     xml_path.write_text(MALFORMED_XML, encoding="utf-8")

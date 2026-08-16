@@ -62,6 +62,9 @@ class UserConfig(Base, UUIDPKMixin, TimestampMixin):
     explicit_exclusions: Mapped[list] = mapped_column(JSON, default=list)
     sophie_memory: Mapped[str | None] = mapped_column(default=None)
 
+    # anthropic/openai/xai — which Chat page provider to use by default.
+    llm_chat_provider: Mapped[str] = mapped_column(String(20), default="anthropic")
+
     profile: Mapped[Profile] = relationship(back_populates="config")
 
 

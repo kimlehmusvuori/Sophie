@@ -2,6 +2,7 @@
 create_all() / Alembic autogenerate."""
 
 from sophie.db.base import Base
+from sophie.db.models.chat import ChatMessage
 from sophie.db.models.clinical import (
     BodyCompositionAssessment,
     ClinicalImport,
@@ -58,4 +59,5 @@ __all__ = [
     "Session",
     "CalendarSnapshot",
     "DecisionLog",
+    "ChatMessage",
 ]
