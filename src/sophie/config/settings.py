@@ -9,7 +9,7 @@ from __future__ import annotations
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -35,6 +35,17 @@ class Settings(BaseSettings):
     weather_lat: float | None = Field(default=None)
     weather_lon: float | None = Field(default=None)
     weather_location_name: str | None = Field(default=None)
+
+    @field_validator("weather_lat", "weather_lon", mode="before")
+    @classmethod
+    def _blank_env_value_means_unset(cls, value: object) -> object:
+        """An untouched `.env.example` ships these as blank
+        (`WEATHER_LAT=`) — pydantic-settings passes that through as the
+        literal empty string, which fails float parsing. Treat blank as
+        "not configured" rather than crashing the whole app on first run."""
+        if value == "":
+            return None
+        return value
 
     @property
     def database_path(self) -> Path:

@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from sophie.config.timezone import assume_utc
 from sophie.db.models import CanonicalWorkout, WorkoutSourceProvenance
 
 _MATCH_WINDOW = timedelta(minutes=20)
@@ -40,7 +41,10 @@ def find_matching_workout(
     if len(candidates) == 1:
         candidate = candidates[0]
     else:
-        candidate = min(candidates, key=lambda c: abs((c.start_at - start_at).total_seconds()))
+        target = assume_utc(start_at)
+        candidate = min(
+            candidates, key=lambda c: abs((assume_utc(c.start_at) - target).total_seconds())
+        )
 
     if distance_m is not None and candidate.distance_m is not None:
         ratio = distance_m / candidate.distance_m if candidate.distance_m else 0

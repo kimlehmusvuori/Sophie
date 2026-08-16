@@ -7,6 +7,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
+from sophie.domain.import_types import RawWorkout
 from sophie.providers.sports_tracker.fit_parser import (
     extract_fit_workout,
     make_fit_source_identifier,
@@ -400,6 +401,38 @@ def test_dedupe_fit_gpx_pairs_keeps_unmatched_gpx_standalone():
     assert source_types == {"sports_tracker_fit", "sports_tracker_gpx"}
 
 
+def test_dedupe_pairs_indoor_activity_despite_zero_gpx_distance():
+    """Regression test found on real Sports Tracker export data: a pool swim
+    (or gym/indoor session) has a real FIT-recorded distance but a GPX track
+    with no GPS fix computes to ~0m. That must not be treated as a genuine
+    475m-vs-0m mismatch and left unpaired — it silently double-counted every
+    indoor/stationary workout on real data before this fix."""
+    fit_workout = RawWorkout(
+        source_type="sports_tracker_fit",
+        source_identifier="swim-fit",
+        activity_type="other",
+        start_at=datetime(2023, 6, 12, 4, 35, 37, tzinfo=UTC),
+        end_at=datetime(2023, 6, 12, 4, 55, 52, tzinfo=UTC),
+        duration_s=1215,
+        distance_m=475.0,
+    )
+    gpx_workout = RawWorkout(
+        source_type="sports_tracker_gpx",
+        source_identifier="swim-gpx",
+        activity_type="other",
+        start_at=datetime(2023, 6, 12, 4, 35, 39, tzinfo=UTC),
+        end_at=datetime(2023, 6, 12, 4, 55, 6, tzinfo=UTC),
+        duration_s=1167,
+        distance_m=0.0,
+    )
+
+    merged = dedupe_fit_gpx_pairs([fit_workout], [gpx_workout])
+
+    assert len(merged) == 1
+    assert merged[0].source_type == "sports_tracker_fit"
+    assert merged[0].distance_m == 475.0
+
+
 # --------------------------------------------------------------------------
 # End-to-end: folder and ZIP entry points
 # --------------------------------------------------------------------------
@@ -420,6 +453,61 @@ def test_import_sports_tracker_folder_parses_valid_gpx_and_skips_bad_files(tmp_p
     assert len(outcome.workouts) == 1
     assert outcome.workouts[0].source_type == "sports_tracker_gpx"
     assert any("corrupt.fit" in w for w in outcome.warnings)
+
+
+def test_import_sports_tracker_folder_pairs_by_filename_stem_despite_time_offset(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Regression test: real Sports Tracker exports pair a `.fit` and `.gpx` file
+    under an identical filename stem, but GPX-recorded start time can trail the
+    FIT start time by far more than the fuzzy pairing heuristic's 120s tolerance
+    (GPX only starts recording once GPS locks). Stem-based pairing must still
+    treat these as one activity instead of double-counting it, which is exactly
+    what happened on real export data before this fix."""
+    (tmp_path / "walk_123.fit").write_bytes(b"stand-in bytes; parse_fit_file is mocked below")
+    (tmp_path / "walk_123.gpx").write_text(
+        GPX_TEMPLATE.format(
+            activity="Walking", t0="2026-08-03T06:15:00Z", t1="2026-08-03T06:45:00Z"
+        )
+    )
+
+    fit_workout = RawWorkout(
+        source_type="sports_tracker_fit",
+        source_identifier="walk-fit",
+        activity_type="other",
+        start_at=datetime(2026, 8, 3, 6, 0, 0, tzinfo=UTC),  # 15+ min before the GPX's GPS fix
+        end_at=datetime(2026, 8, 3, 6, 45, 0, tzinfo=UTC),
+        duration_s=2700,
+        distance_m=2000.0,
+    )
+    monkeypatch.setattr(
+        "sophie.providers.sports_tracker.zip_import.parse_fit_file",
+        lambda path, warnings: fit_workout,
+    )
+
+    outcome = import_sports_tracker_folder(tmp_path)
+
+    assert outcome.records_processed == 2
+    assert len(outcome.workouts) == 1
+    assert outcome.workouts[0].source_type == "sports_tracker_fit"
+
+
+def test_import_sports_tracker_folder_falls_back_to_gpx_when_paired_fit_is_corrupt(
+    tmp_path: Path,
+) -> None:
+    (tmp_path / "session.fit").write_bytes(b"not a real fit file")
+    (tmp_path / "session.gpx").write_text(
+        GPX_TEMPLATE.format(
+            activity="Running", t0="2026-08-03T06:00:00Z", t1="2026-08-03T06:20:00Z"
+        )
+    )
+
+    outcome = import_sports_tracker_folder(tmp_path)
+
+    assert outcome.records_processed == 2
+    assert len(outcome.workouts) == 1
+    assert outcome.workouts[0].source_type == "sports_tracker_gpx"
+    assert any("session.fit" in w for w in outcome.warnings)
 
 
 def test_import_sports_tracker_zip_end_to_end(tmp_path: Path):

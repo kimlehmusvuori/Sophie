@@ -51,8 +51,12 @@ def normalize_apple_health_activity(activity_type: str) -> str:
     return _APPLE_HEALTH_MAP.get(activity_type, "other")
 
 
-def normalize_fit_sport(sport: str | None) -> str:
-    if not sport:
+def normalize_fit_sport(sport: object | None) -> str:
+    """`sport` is normally a decoded string, but some real-world FIT files
+    (e.g. an unrecognized/vendor-specific sport enum) make `fitparse` fall
+    back to returning the raw numeric field value instead — never let that
+    crash the import, just treat it as unrecognized."""
+    if not sport or not isinstance(sport, str):
         return "other"
     return _FIT_SPORT_MAP.get(sport.lower(), "other")
 

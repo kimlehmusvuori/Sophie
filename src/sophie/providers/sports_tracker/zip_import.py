@@ -30,6 +30,24 @@ _PAIR_MIN_DURATION_TOLERANCE_S = 60
 _PAIR_MIN_DISTANCE_TOLERANCE_M = 200.0
 _PAIR_RELATIVE_TOLERANCE = 0.1
 
+# A GPX track's distance comes from summing haversine distances between
+# trackpoints. For an indoor/stationary activity (pool swimming, gym,
+# indoor cycling) with no real GPS fix, that sum is ~0 regardless of the
+# FIT file's real recorded distance (pool length count, footpod, etc) —
+# this is a real bug found on real Sports Tracker export data: e.g. a FIT
+# distance of 475m paired against a GPX distance of 0.0m for the same
+# swim was being treated as a genuine 475m mismatch and left unpaired,
+# silently double-counting the workout. A near-zero distance on either
+# side is therefore treated as "no distance signal", not as a real
+# measurement to compare.
+_MIN_MEANINGFUL_DISTANCE_M = 15.0
+
+
+def _meaningful_distance(value: float | None) -> float | None:
+    if value is None or value < _MIN_MEANINGFUL_DISTANCE_M:
+        return None
+    return value
+
 
 def safe_extract_zip(zip_path: str | Path, extract_dir: str | Path) -> tuple[list[Path], list[str]]:
     """Extract `zip_path` into `extract_dir`, guarding against:
@@ -105,12 +123,14 @@ def _is_same_activity(a: RawWorkout, b: RawWorkout) -> bool:
         if abs(a.duration_s - b.duration_s) > tolerance:
             return False
 
-    if a.distance_m is not None and b.distance_m is not None:
+    dist_a = _meaningful_distance(a.distance_m)
+    dist_b = _meaningful_distance(b.distance_m)
+    if dist_a is not None and dist_b is not None:
         tolerance = max(
             _PAIR_MIN_DISTANCE_TOLERANCE_M,
-            _PAIR_RELATIVE_TOLERANCE * max(a.distance_m, b.distance_m),
+            _PAIR_RELATIVE_TOLERANCE * max(dist_a, dist_b),
         )
-        if abs(a.distance_m - b.distance_m) > tolerance:
+        if abs(dist_a - dist_b) > tolerance:
             return False
 
     return True
@@ -134,29 +154,60 @@ def dedupe_fit_gpx_pairs(
 def import_sports_tracker_folder(folder: str | Path) -> ImportOutcome:
     """Parse every `.fit` and `.gpx` file found (recursively) under `folder` and
     return a combined, deduped `ImportOutcome`. Never raises for individual bad
-    files - failures become entries in `ImportOutcome.warnings`."""
+    files - failures become entries in `ImportOutcome.warnings`.
+
+    Sports Tracker exports a `.fit` and a `.gpx` for the same real-world
+    activity under an identical filename stem (verified on a real export:
+    451 stems, each with exactly one `.fit` and one `.gpx`) - that's a
+    deterministic pairing key, unlike the time/duration/distance heuristic
+    in `_is_same_activity`, which can miss pairs entirely (e.g. GPX start
+    time trailing FIT start time by 10+ minutes on GPS-lock-delayed
+    outdoor activities). Stems present in both maps are paired directly;
+    the fuzzy heuristic is only needed as a fallback for files whose stem
+    has no same-stem counterpart (e.g. a different export source/naming
+    scheme)."""
     folder = Path(folder)
     outcome = ImportOutcome()
 
     fit_paths = sorted(p for p in folder.rglob("*") if p.is_file() and p.suffix.lower() == ".fit")
     gpx_paths = sorted(p for p in folder.rglob("*") if p.is_file() and p.suffix.lower() == ".gpx")
 
-    fit_workouts: list[RawWorkout] = []
-    for fit_path in fit_paths:
-        outcome.records_processed += 1
-        workout = parse_fit_file(fit_path, outcome.warnings)
-        if workout is not None:
-            fit_workouts.append(workout)
+    fit_by_stem = {p.stem: p for p in fit_paths}
+    gpx_by_stem = {p.stem: p for p in gpx_paths}
+    shared_stems = set(fit_by_stem) & set(gpx_by_stem)
 
-    gpx_workouts: list[RawWorkout] = []
-    for gpx_path in gpx_paths:
+    paired_workouts: list[RawWorkout] = []
+    for stem in sorted(shared_stems):
         outcome.records_processed += 1
-        workout, file_warnings = parse_gpx_file(gpx_path)
+        fit_workout = parse_fit_file(fit_by_stem[stem], outcome.warnings)
+
+        outcome.records_processed += 1
+        gpx_workout, gpx_warnings = parse_gpx_file(gpx_by_stem[stem])
+        outcome.warnings.extend(gpx_warnings)
+
+        if fit_workout is not None:
+            paired_workouts.append(fit_workout)
+        elif gpx_workout is not None:
+            paired_workouts.append(gpx_workout)
+
+    orphan_fit_workouts: list[RawWorkout] = []
+    for stem in sorted(set(fit_by_stem) - shared_stems):
+        outcome.records_processed += 1
+        workout = parse_fit_file(fit_by_stem[stem], outcome.warnings)
+        if workout is not None:
+            orphan_fit_workouts.append(workout)
+
+    orphan_gpx_workouts: list[RawWorkout] = []
+    for stem in sorted(set(gpx_by_stem) - shared_stems):
+        outcome.records_processed += 1
+        workout, file_warnings = parse_gpx_file(gpx_by_stem[stem])
         outcome.warnings.extend(file_warnings)
         if workout is not None:
-            gpx_workouts.append(workout)
+            orphan_gpx_workouts.append(workout)
 
-    outcome.workouts = dedupe_fit_gpx_pairs(fit_workouts, gpx_workouts)
+    outcome.workouts = paired_workouts + dedupe_fit_gpx_pairs(
+        orphan_fit_workouts, orphan_gpx_workouts
+    )
     return outcome
 
 

@@ -10,6 +10,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from sophie.config.settings import Settings
+from sophie.config.timezone import assume_utc
 from sophie.db.models import ImportManifest
 from sophie.repositories import clinical_repo
 
@@ -43,7 +44,11 @@ def _import_source_status(
     manifest = _last_successful_import(session, profile_id, source_type)
     if manifest is None:
         return SourceStatus(name=label, configured=True, status="never_imported")
-    age_days = (datetime.now(UTC) - manifest.finished_at).days if manifest.finished_at else None
+    age_days = (
+        (datetime.now(UTC) - assume_utc(manifest.finished_at)).days
+        if manifest.finished_at
+        else None
+    )
     stale = age_days is not None and age_days > 30
     return SourceStatus(
         name=label,
