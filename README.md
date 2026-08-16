@@ -105,6 +105,29 @@ OPENAI_MODEL=gpt-4o-mini
 Only processed summaries and sanitized context are ever sent — never raw health data, raw
 calendar content, or clinical files. See [docs/PRIVACY.md](docs/PRIVACY.md).
 
+### Chat page
+
+The **Chat** page is a separate, free-form Q&A surface — ask about your training, sleep, recovery,
+or other trends. Pick whichever provider you have a key for (Claude/Anthropic is the default):
+
+```
+ANTHROPIC_API_KEY=sk-ant-...
+ANTHROPIC_MODEL=claude-sonnet-4-5
+OPENAI_API_KEY=sk-...       # same key as above, reused for Chat too
+XAI_API_KEY=xai-...
+XAI_MODEL=grok-4
+```
+
+Same privacy rule as the coach: only sanitized summaries reach whichever provider you pick, never
+raw data. Leave a key blank to leave that provider unavailable — Sophie shows this in the Chat
+page's provider picker rather than crashing.
+
+### Trends page
+
+No setup needed — the **Trends** page shows one simple chart and trailing average per area
+(training distance, sleep, weight, resting heart rate, HRV) once you've imported some data.
+Toggle between Week/Month/Year to change both the chart's granularity and the average shown.
+
 ## 8. Weather (optional)
 
 Set a coarse location in Memory/Config (or `.env`: `WEATHER_LAT`, `WEATHER_LON`,
