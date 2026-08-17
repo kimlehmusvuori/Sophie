@@ -29,6 +29,47 @@ class Dossier:
 
 DOSSIERS: list[Dossier] = [
     Dossier(
+        key="thy_spa",
+        title="Thy SPA — Adilson has tagged you twice for your view",
+        counterpart="Adilson Fonseca (MVI) · Noel Johansen, Max Buchwald, Mårten, Lisa",
+        severity="urgent",
+        age="asked 22:27 and again 22:35",
+        why=(
+            "Schjødt's initial markup of the SPA, warranties and Poul Erik's contract landed at "
+            "20:22, with a couple of commercial matters flagged for tomorrow. Adilson then tagged "
+            "you directly — twice in eight minutes — asking you to review and come back with your "
+            "view so they can conclude the documents at tomorrow's check-in. You are the named "
+            "blocker on a live deal document, and the call is tomorrow."
+        ),
+        excerpt=(
+            "Would be good if we could check in on this tomorrow as well to see what information "
+            "is outstanding so that we could conclude on these documents. @kim.lehmusvuori, "
+            "appreciate if you could review and get back with your view if anything should be "
+            "added. … @kim.lehmusvuori, anything to add?"
+        ),
+        excerpt_source="Adilson Fonseca — Mon 22:27 and 22:35",
+        to=["adilson.fonseca@mvi.se"],
+        cc=[
+            "noel.johansen@schjodt.com",
+            "max.buchwald@schjodt.com",
+            "marten.werner@mvi.se",
+            "lisa.reenbom@mvi.se",
+        ],
+        subject="RE: Thy - New employment agreements [SCHJODT--MATTERS.FID1525536]",
+        draft=(
+            "Hej Adilson,\n\n"
+            "Jag går igenom Schjødts markup ikväll eller tidigt imorgon och återkommer med mina "
+            "punkter före avstämningen.\n\n"
+            "Vad gäller de kommersiella frågorna Noel flaggar - låt oss ta dem först på mötet, så "
+            "vi inte fastnar i detaljer innan vi är överens om principerna.\n\n"
+            "Mvh, Kim"
+        ),
+        caution=(
+            "Commits you to reading the SPA markup before tomorrow's call. You could answer this "
+            "and Adilson's Christer-timing question in one go."
+        ),
+    ),
+    Dossier(
         key="ekholm_dates",
         title="Daniel Ekholm — came back with dates, needs you to pick one",
         counterpart="Daniel Ekholm (KPMG)",
