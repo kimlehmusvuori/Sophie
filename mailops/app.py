@@ -3,8 +3,8 @@
 Run with:  streamlit run mailops/app.py
 
 Each dossier shows why the thread was flagged, what the counterpart actually
-asked, and an editable draft. Sending is two taps: Send reply, then Confirm.
-Nothing leaves the mailbox without that confirmation.
+asked, and an editable draft. One button — Accept & send — sends exactly the
+text shown. Nothing is sent until that button is pressed.
 """
 
 from __future__ import annotations
@@ -39,7 +39,6 @@ def _init_state() -> None:
     st.session_state.setdefault("account", None)
     st.session_state.setdefault("device_flow", None)
     st.session_state.setdefault("sent", {})  # key -> confirmation text
-    st.session_state.setdefault("confirming", None)  # key awaiting confirmation
     st.session_state.setdefault("errors", {})  # key -> error text
 
 
@@ -159,25 +158,23 @@ def render_dossier(item: Dossier, *, can_send: bool) -> None:
         st.error(error)
 
     if not can_send:
-        st.button("Send reply", key=f"send_{item.key}", disabled=True)
+        st.button("✅  Accept & send", key=f"send_{item.key}", disabled=True)
         st.caption("Sign in above to enable sending.")
         st.divider()
         return
 
-    if st.session_state.confirming == item.key:
-        st.markdown("**Send this now?**")
-        confirm_columns = st.columns(2)
-        if confirm_columns[0].button("Confirm & send", key=f"confirm_{item.key}", type="primary"):
+    # One button, one send. The draft is right above it and editable, so the
+    # text on screen is exactly what goes out — no second confirmation step.
+    if st.button(
+        "✅  Accept & send",
+        key=f"send_{item.key}",
+        type="primary",
+        use_container_width=True,
+    ):
+        st.session_state.errors.pop(item.key, None)
+        with st.spinner("Sending…"):
             _do_send(item, body)
-            st.rerun()
-        if confirm_columns[1].button("Cancel", key=f"cancel_{item.key}"):
-            st.session_state.confirming = None
-            st.rerun()
-    else:
-        if st.button("Send reply", key=f"send_{item.key}", type="primary"):
-            st.session_state.confirming = item.key
-            st.session_state.errors.pop(item.key, None)
-            st.rerun()
+        st.rerun()
 
     st.divider()
 
@@ -201,17 +198,14 @@ def _do_send(item: Dossier, body: str) -> None:
             )
         else:
             st.session_state.errors[item.key] = str(exc)
-        st.session_state.confirming = None
         return
     except Exception as exc:  # network stack failures surface here
         st.session_state.errors[item.key] = (
             f"Could not reach Microsoft: {exc}. Check Sent Items before trying again."
         )
-        st.session_state.confirming = None
         return
 
     st.session_state.sent[item.key] = f"Sent to {', '.join(item.to)} — a copy is in Sent Items."
-    st.session_state.confirming = None
 
 
 # --------------------------------------------------------------------------
