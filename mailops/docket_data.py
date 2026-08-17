@@ -106,30 +106,71 @@ DOSSIERS: list[Dossier] = [
     ),
     Dossier(
         key="boregruppen",
-        title="Boregruppen intro — Wednesday pickup not confirmed",
+        title="Boregruppen — now collides with Norion on Wednesday",
         counterpart="Jens Waldorff (W+) · cc Maximus Ståel von Holstein",
-        severity="medium",
-        age="received Fri 07:30 · open 4 days",
+        severity="urgent",
+        age="proposed Fri 14 Aug · your question still unanswered",
         why=(
-            "Jens offered to collect you at the airport Wednesday ~4pm and drive via B&H to "
-            "Boregruppen. You replied in the same thread but only answered the revenue-split "
-            "question below it — the logistics were never confirmed."
+            "Jens proposed Boregruppen (Tonny) for Wednesday around 4pm. Tonight you agreed to "
+            "put Norion at 4–5pm the same Wednesday. Those two cannot both stand, and Jens has "
+            "not been told. Separately, your 14 August question is still unanswered: you asked "
+            "for Boregruppen's revenue split because drilling operations and non-advisory "
+            "contractor work may make it a poor fit. The airport pickup was never confirmed "
+            "either."
         ),
         excerpt=(
-            "Tonny from Boregruppen in Karlslunde… is ready for a meeting. I suggest Wednesday "
-            "after the B&H meeting, maybe around 4 pm. Then I can pick you up at the airport, "
-            "drive to B&H, and continue on to Boregruppen. Is that OK?"
+            "I suggest Wednesday after the B&H meeting, maybe around 4 pm. Then I can pick you up "
+            "at the airport, drive to B&H, and continue on to Boregruppen. Is that OK?"
         ),
-        excerpt_source="Jens Waldorff — Fri 07:30",
+        excerpt_source="Jens Waldorff — Fri 14 Aug 09:30",
         to=["jw@wplus.dk"],
         cc=["maximus.svh@ametalis.com"],
         subject="Re: Quick update: kLAR Miljørådgivning",
         draft=(
             "Hi Jens,\n\n"
-            "Wednesday works well — thank you for organising the pickup and the run via B&H to "
-            "Boregruppen. See you at the airport around 4pm.\n\n"
+            "One more thing on Wednesday: you had suggested Boregruppen around 4pm, and we have "
+            "now put Norion at 4-5pm. Those clash - can we fit both with Boregruppen earlier, or "
+            "should we move one?\n\n"
+            "Before we sit down with Tonny I would still like the revenue split. My hesitation is "
+            "the drilling operations and the non-advisory contractor work; if that is a large "
+            "share, Boregruppen is probably not the right fit for us and I would rather hold off "
+            "than take the meeting.\n\n"
+            "And yes to the airport pickup on Wednesday - thank you for organising it.\n\n"
             "Best,\n"
             "Kim"
+        ),
+        caution=(
+            "Replaces the earlier draft, which would have confirmed a 4pm Boregruppen meeting "
+            "that now conflicts with Norion."
+        ),
+    ),
+    Dossier(
+        key="adilson_christer",
+        title="Christer meeting — Adilson proposed a window, needs your yes",
+        counterpart="Adilson Fonseca (MVI) · Thy",
+        severity="medium",
+        age="received 19:59",
+        why=(
+            "This answers the timing question carried on the Thy thread since Friday. Adilson "
+            "expects the agreements done mid-week and proposes early next week for Christer, with "
+            "room to sync with PEJ first. He put it as a question, so it stays open until you "
+            "confirm."
+        ),
+        excerpt=(
+            "Förväntar mig att vi borde vara klara med avtalen i mitten på denna vecka, så kanske "
+            "i början på nästa lär vara lämplig tidpunkt? Kan vara bra att ha lite luft så du "
+            "hinner stämma av med PEJ innan du sätter dig med christer."
+        ),
+        excerpt_source="Adilson Fonseca — Mon 19:59",
+        to=["adilson.fonseca@mvi.se"],
+        cc=[],
+        subject="RE: Thy - New employment agreements",
+        draft=(
+            "Hej Adilson,\n\n"
+            "Låter bra - vi siktar på början av nästa vecka för Christer, så hinner jag stämma av "
+            "med PEJ först.\n\n"
+            "Säg till när avtalen är klara, så bokar jag in det.\n\n"
+            "Mvh, Kim"
         ),
     ),
     Dossier(
