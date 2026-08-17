@@ -29,39 +29,6 @@ class Dossier:
 
 DOSSIERS: list[Dossier] = [
     Dossier(
-        key="firmateckning",
-        title="Firmateckning — Linus is about to file with only his signature",
-        counterpart="Linus Nilsson (Relement Miljö Väst AB) · cc Andreas Bladh",
-        severity="urgent",
-        age="nudged this morning · thread dormant since 2 Aug",
-        why=(
-            "Linus has come back on a thread that went quiet after the 2 August reply, asking "
-            "whether to send the filing in with only his own signature. In July this was noted "
-            'as normally "två i grupp" — two signatories in combination — so a single-signed '
-            "filing risks not holding. He is waiting on a yes or no before acting."
-        ),
-        excerpt=(
-            "Hade du löst någon signatur på denna eller ska jag testa att skicka iväg den med "
-            "bara min signatur?"
-        ),
-        excerpt_source="Linus Nilsson — Mon 10:30",
-        to=["linus.nilsson@relement.se"],
-        cc=["andreas.bladh@ametalis.com"],
-        subject="Sv: Firmateckning",
-        draft=(
-            "Hej Linus,\n\n"
-            "Vänta med att skicka in den med bara din signatur - om firmateckningen är två i "
-            "förening håller den inte då.\n\n"
-            "Jag kollar upp vad som gäller och återkommer till dig idag, så vi får in den rätt "
-            "från början.\n\n"
-            "// Kim"
-        ),
-        caution=(
-            "This promises an answer today — worth checking the registered signatory rule with "
-            "Andreas or Mikael first."
-        ),
-    ),
-    Dossier(
         key="boregruppen",
         title="Boregruppen intro — Wednesday pickup not confirmed",
         counterpart="Jens Waldorff (W+) · cc Maximus Ståel von Holstein",
