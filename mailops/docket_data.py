@@ -29,6 +29,84 @@ class Dossier:
 
 DOSSIERS: list[Dossier] = [
     Dossier(
+        key="marcus",
+        title="Marcus Thomasson — offered you dates, went unanswered for 5 days",
+        counterpart="Marcus Thomasson (M.A.C.O Business Development)",
+        severity="urgent",
+        age="received Wed 12 Aug 20:56 · open 5 days",
+        why=(
+            "Marcus answered the two wildlife-camera questions in detail and offered concrete "
+            "dates: 19 or 20 August, or 1 September in Stockholm from ~15:00. He was explicit "
+            "that he has no further travel days in August. On 13 August the mail was forwarded "
+            "to Mikael but Marcus himself never got a reply — five days of silence from his "
+            "side, and the August window closes this week. There is also an outstanding promise "
+            "of the digitalisation draft, and a stated wish to meet before the 9 September "
+            "strategy day."
+        ),
+        excerpt=(
+            "Den 1 september är jag i Stockholm för ett styrelsemöte med Freedom och kan träffas "
+            "från cirka kl. 15.00 och framåt. Om du gärna vill få till ett möte redan i augusti "
+            "skulle jag även kunna komma upp den 19 eller 20 augusti… Tyvärr har jag inte "
+            "möjlighet till fler resdagar under augusti."
+        ),
+        excerpt_source="Marcus Thomasson — Wed 12 Aug 20:56",
+        to=["marcus.thomasson@macoab.se"],
+        cc=[],
+        subject="Sv: Kort update / tack för bra samtal!",
+        draft=(
+            "Hej Marcus,\n\n"
+            "Tack för ett grundligt svar - och ursäkta att jag varit tyst, det har varit fullt "
+            "sedan AI-outingen.\n\n"
+            "Onsdag den 19:e är jag i Danmark, så den funkar inte. Torsdag den 20:e i Stockholm "
+            "skulle däremot passa mig bra - säg till om det fungerar för dig, annars bokar vi "
+            "1 september från 15:00.\n\n"
+            "Din genomgång av viltkamera-lösningen var intressant. Jag delade den med Mikael, "
+            "och hans bild är att AI-delen redan fungerar bra för art och antal - individnivå är "
+            "det som skulle vara nytt. Vi tar det vidare när vi ses.\n\n"
+            "Inför strategidagen den 9 september skickar jag ut materialet senast en vecka "
+            "innan, så det vore värdefullt att ha hunnit prata före dess.\n\n"
+            "Mvh,\n"
+            "Kim"
+        ),
+        caution=(
+            "Assumes Wednesday the 19th is your Denmark day (per the Boregruppen thread) — check "
+            "the calendar first. You also still owe him the digitalisation draft."
+        ),
+    ),
+    Dossier(
+        key="ai_review_friday",
+        title="AI project review — Philip needs a yes on Friday 12:00",
+        counterpart="Philip Hygrell · Andreas, Mikael, Maximus also asked",
+        severity="medium",
+        age="received 16:02",
+        why=(
+            "Philip is running the follow-up he was asked to lead. He proposes Friday 12:00–13:00 "
+            "with a continue/pause/kill pass per project, then prioritisation and ownership, and "
+            "asks all four to confirm. As the person who owns Eric's allocation, your yes is the "
+            "one that makes the meeting real."
+        ),
+        excerpt=(
+            "Jag föreslår att vi bokar in ett lunchmöte nu på fredag kl. 12:00 – 13:00, det var "
+            "tomt i allas kalendrar då. Fungerar det för er alla?"
+        ),
+        excerpt_source="Philip Hygrell — Mon 16:02",
+        to=["philip.hygrell@ametalis.com"],
+        cc=[
+            "andreas.bladh@ametalis.com",
+            "mikael.nilsson@ametalis.com",
+            "maximus.svh@ametalis.com",
+        ],
+        subject="Sv: AI Outing - Top 3 takeaways",
+        draft=(
+            "Hej Philip,\n\n"
+            "Fredag 12:00-13:00 funkar för mig, och agendan ser bra ut - särskilt "
+            "fortsätt/pausa/kill per projekt.\n\n"
+            "Ett tillägg: låt oss avsätta ordentlig tid till kapacitetsfrågan. Erics tid är "
+            "begränsad, och det är där prioriteringen kommer att bita.\n\n"
+            "// Kim"
+        ),
+    ),
+    Dossier(
         key="syntari",
         title="Syntari — Philip has delivered the recommendation you asked for",
         counterpart="Philip Hygrell (Ametalis)",
