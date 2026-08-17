@@ -33,13 +33,14 @@ DOSSIERS: list[Dossier] = [
         title="Thy SPA — Adilson has tagged you twice for your view",
         counterpart="Adilson Fonseca (MVI) · Noel Johansen, Max Buchwald, Mårten, Lisa",
         severity="urgent",
-        age="asked 22:27 and again 22:35",
+        age="asked 22:27 and again 22:35 last night",
         why=(
             "Schjødt's initial markup of the SPA, warranties and Poul Erik's contract landed at "
-            "20:22, with a couple of commercial matters flagged for tomorrow. Adilson then tagged "
+            "20:22, with a couple of commercial matters flagged for the check-in. Adilson then "
+            "tagged "
             "you directly — twice in eight minutes — asking you to review and come back with your "
-            "view so they can conclude the documents at tomorrow's check-in. You are the named "
-            "blocker on a live deal document, and the call is tomorrow."
+            "view so they can conclude the documents. You are the named blocker on a live deal "
+            "document, and that check-in is today."
         ),
         excerpt=(
             "Would be good if we could check in on this tomorrow as well to see what information "
@@ -58,14 +59,14 @@ DOSSIERS: list[Dossier] = [
         subject="RE: Thy - New employment agreements [SCHJODT--MATTERS.FID1525536]",
         draft=(
             "Hej Adilson,\n\n"
-            "Jag går igenom Schjødts markup ikväll eller tidigt imorgon och återkommer med mina "
-            "punkter före avstämningen.\n\n"
+            "Jag går igenom Schjødts markup i morse och återkommer med mina punkter före "
+            "avstämningen.\n\n"
             "Vad gäller de kommersiella frågorna Noel flaggar - låt oss ta dem först på mötet, så "
             "vi inte fastnar i detaljer innan vi är överens om principerna.\n\n"
             "Mvh, Kim"
         ),
         caution=(
-            "Commits you to reading the SPA markup before tomorrow's call. You could answer this "
+            "Commits you to reading the SPA markup before today's call. You could answer this "
             "and Adilson's Christer-timing question in one go."
         ),
     ),
@@ -102,16 +103,17 @@ DOSSIERS: list[Dossier] = [
     ),
     Dossier(
         key="marcus",
-        title="Marcus Thomasson — offered you dates, went unanswered for 5 days",
+        title="Marcus Thomasson — offered you dates, went unanswered for 6 days",
         counterpart="Marcus Thomasson (M.A.C.O Business Development)",
         severity="urgent",
-        age="received Wed 12 Aug 20:56 · open 5 days",
+        age="received Wed 12 Aug 20:56 · open 6 days",
         why=(
             "Marcus answered the two wildlife-camera questions in detail and offered concrete "
             "dates: 19 or 20 August, or 1 September in Stockholm from ~15:00. He was explicit "
             "that he has no further travel days in August. On 13 August the mail was forwarded "
-            "to Mikael but Marcus himself never got a reply — five days of silence from his "
-            "side, and the August window closes this week. There is also an outstanding promise "
+            "to Mikael but Marcus himself never got a reply — six days of silence from his side. "
+            "The first date he offered, the 19th, is tomorrow, and it is his Denmark day. "
+            "There is also an outstanding promise "
             "of the digitalisation draft, and a stated wish to meet before the 9 September "
             "strategy day."
         ),
@@ -150,10 +152,11 @@ DOSSIERS: list[Dossier] = [
         title="Boregruppen — now collides with Norion on Wednesday",
         counterpart="Jens Waldorff (W+) · cc Maximus Ståel von Holstein",
         severity="urgent",
-        age="Norion now locked 16:00 · your question still unanswered",
+        age="Wednesday is tomorrow · your question still unanswered",
         why=(
-            "Now confirmed, not just proposed. Bjørn sent the invitation at 22:35 and Jens "
-            "forwarded it at 22:39: Norion, Wednesday 16:00–16:55, at their premises. Jens had "
+            "Now confirmed, not just proposed. Bjørn sent the invitation last night at 22:35 and "
+            "Jens forwarded it at 22:39: Norion, Wednesday 16:00–16:55, at their premises — that "
+            "is tomorrow. Jens had "
             "pencilled Boregruppen (Tonny) for the same Wednesday around 4pm — that slot is gone, "
             "and Jens still has not been told the two collide. Separately, your 14 August "
             "question remains unanswered: you asked for Boregruppen's revenue split because "
