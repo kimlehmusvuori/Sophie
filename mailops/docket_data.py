@@ -74,36 +74,72 @@ DOSSIERS: list[Dossier] = [
         ),
     ),
     Dossier(
-        key="ai_review_friday",
-        title="AI project review — Philip needs a yes on Friday 12:00",
-        counterpart="Philip Hygrell · Andreas, Mikael, Maximus also asked",
+        key="attest_levels",
+        title="Attest levels — Andreas and Mikael are both waiting on your call",
+        counterpart="Andreas Bladh & Mikael Nilsson (Ametalis)",
         severity="medium",
-        age="received 16:02",
+        age="Andreas asked 10:57 · Mikael added 16:51",
         why=(
-            "Philip is running the follow-up he was asked to lead. He proposes Friday 12:00–13:00 "
-            "with a continue/pause/kill pass per project, then prioritisation and ownership, and "
-            "asks all four to confirm. As the person who owns Eric's allocation, your yes is the "
-            "one that makes the meeting real."
+            "Andreas asked this morning what volume levels are reasonable for the attest rights "
+            "in the VD-instruktion. This afternoon Mikael came in on the same thread proposing "
+            "they keep it simple for now — a light policy plus a power of attorney — and then "
+            "land proper documents for VD-instruktion, ägardirektiv and attestordning. Neither "
+            "can finish without a direction, and it has been sitting most of the day."
         ),
         excerpt=(
-            "Jag föreslår att vi bokar in ett lunchmöte nu på fredag kl. 12:00 – 13:00, det var "
-            "tomt i allas kalendrar då. Fungerar det för er alla?"
+            "Vi kan väl hålla det enkelt typ som vi va inne på för nån vecka sen, enkel policy "
+            "eventuellt kombinerat med en fullmakt. Sen behöver vi se till att landa en ordentlig "
+            "policy på: vd instruktion / Ägardirektiv / Attestordning"
         ),
-        excerpt_source="Philip Hygrell — Mon 16:02",
-        to=["philip.hygrell@ametalis.com"],
-        cc=[
-            "andreas.bladh@ametalis.com",
-            "mikael.nilsson@ametalis.com",
-            "maximus.svh@ametalis.com",
-        ],
-        subject="Sv: AI Outing - Top 3 takeaways",
+        excerpt_source="Mikael Nilsson — Mon 16:51",
+        to=["andreas.bladh@ametalis.com", "mikael.nilsson@ametalis.com"],
+        cc=[],
+        subject="Re: Firmateckning",
         draft=(
-            "Hej Philip,\n\n"
-            "Fredag 12:00-13:00 funkar för mig, och agendan ser bra ut - särskilt "
-            "fortsätt/pausa/kill per projekt.\n\n"
-            "Ett tillägg: låt oss avsätta ordentlig tid till kapacitetsfrågan. Erics tid är "
-            "begränsad, och det är där prioriteringen kommer att bita.\n\n"
+            "Hej,\n\n"
+            "Enig med Mikael - vi kör en enkel policy nu, eventuellt kombinerad med fullmakt, så "
+            "vi inte blockerar löpande ärenden.\n\n"
+            "Parallellt landar vi de tre: VD-instruktion, ägardirektiv och attestordning. "
+            "Andreas, du driver utkastet.\n\n"
+            "Kring attestnivåer vill jag se ett förslag från er två snarare än att jag sätter "
+            "siffrorna själv. Ta fram nivåer utifrån vad som faktiskt passerar idag - volym och "
+            "typ av beslut - så tar vi ställning utifrån det.\n\n"
             "// Kim"
+        ),
+        caution=(
+            "This delegates the attest levels back to them with a frame rather than answering "
+            "Andreas's question directly. If you already have numbers in mind, say them instead."
+        ),
+    ),
+    Dossier(
+        key="eric_invoice",
+        title="Eric's August invoice — two questions blocking him",
+        counterpart="Eric Edholm (consultant)",
+        severity="medium",
+        age="received 16:54",
+        why=(
+            "Eric wants to invoice for August and needs two facts first: which legal entity to "
+            "bill, and which address to send it to. He cannot proceed without an answer, and he "
+            "is the constrained resource in the AI work — worth not leaving him on admin."
+        ),
+        excerpt=(
+            "Tänkte fakturera augusti 💸 Ska jag ställa ut fakturan mot Ametalis AB? Och ska den "
+            "skickas till någon speciell email?"
+        ),
+        excerpt_source="Eric Edholm — Mon 16:54",
+        to=["eric@ericgustaf.com"],
+        cc=["mikael.nilsson@ametalis.com"],
+        subject="Re: Faktura",
+        draft=(
+            "Hej Eric,\n\n"
+            "Ja, ställ den mot Ametalis AB.\n\n"
+            "Jag sätter Mikael på cc - han ger dig rätt fakturaadress så den går rätt in i "
+            "systemet direkt.\n\n"
+            "// Kim"
+        ),
+        caution=(
+            "Confirms Ametalis AB as the billed entity — check that's right if any of the work sat "
+            "under a portfolio company. The invoice address is left to Mikael, not guessed."
         ),
     ),
     Dossier(
