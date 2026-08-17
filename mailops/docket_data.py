@@ -150,14 +150,15 @@ DOSSIERS: list[Dossier] = [
         title="Boregruppen — now collides with Norion on Wednesday",
         counterpart="Jens Waldorff (W+) · cc Maximus Ståel von Holstein",
         severity="urgent",
-        age="proposed Fri 14 Aug · your question still unanswered",
+        age="Norion now locked 16:00 · your question still unanswered",
         why=(
-            "Jens proposed Boregruppen (Tonny) for Wednesday around 4pm. Tonight you agreed to "
-            "put Norion at 4–5pm the same Wednesday. Those two cannot both stand, and Jens has "
-            "not been told. Separately, your 14 August question is still unanswered: you asked "
-            "for Boregruppen's revenue split because drilling operations and non-advisory "
-            "contractor work may make it a poor fit. The airport pickup was never confirmed "
-            "either."
+            "Now confirmed, not just proposed. Bjørn sent the invitation at 22:35 and Jens "
+            "forwarded it at 22:39: Norion, Wednesday 16:00–16:55, at their premises. Jens had "
+            "pencilled Boregruppen (Tonny) for the same Wednesday around 4pm — that slot is gone, "
+            "and Jens still has not been told the two collide. Separately, your 14 August "
+            "question remains unanswered: you asked for Boregruppen's revenue split because "
+            "drilling operations and non-advisory contractor work may make it a poor fit. The "
+            "airport pickup was never confirmed either."
         ),
         excerpt=(
             "I suggest Wednesday after the B&H meeting, maybe around 4 pm. Then I can pick you up "
@@ -169,9 +170,9 @@ DOSSIERS: list[Dossier] = [
         subject="Re: Quick update: kLAR Miljørådgivning",
         draft=(
             "Hi Jens,\n\n"
-            "One more thing on Wednesday: you had suggested Boregruppen around 4pm, and we have "
-            "now put Norion at 4-5pm. Those clash - can we fit both with Boregruppen earlier, or "
-            "should we move one?\n\n"
+            "Thanks - Norion Wednesday 16:00-16:55 at their place is in the calendar.\n\n"
+            "That means Boregruppen cannot also be at 4pm. Can Tonny take us earlier in the "
+            "afternoon, straight after B&H? If not, let us move Boregruppen to another day.\n\n"
             "Before we sit down with Tonny I would still like the revenue split. My hesitation is "
             "the drilling operations and the non-advisory contractor work; if that is a large "
             "share, Boregruppen is probably not the right fit for us and I would rather hold off "
@@ -181,8 +182,8 @@ DOSSIERS: list[Dossier] = [
             "Kim"
         ),
         caution=(
-            "Replaces the earlier draft, which would have confirmed a 4pm Boregruppen meeting "
-            "that now conflicts with Norion."
+            "Norion is now fixed at 16:00–16:55 at their premises, so Boregruppen needs an "
+            "earlier slot or another day. Jens is driving you from the airport via B&H."
         ),
     ),
     Dossier(
