@@ -29,34 +29,6 @@ class Dossier:
 
 DOSSIERS: list[Dossier] = [
     Dossier(
-        key="staffan",
-        title="Staffan Asplund — gave you call windows, one is tonight",
-        counterpart="Staffan Asplund (Etha Consultancy) · Insplan",
-        severity="urgent",
-        age="you asked at 16:32 · he answered 18:35",
-        why=(
-            'You sent Staffan the Insplan pack marked "your eyes only" and asked when he could '
-            "talk. He came straight back with his windows: tonight until 22:00, then tomorrow "
-            "07:00–11:00 and 15:00–19:00. He has answered and is waiting on you to name a time — "
-            "and the first window closes in a few hours."
-        ),
-        excerpt="ida till 22 — i morgon 7-11 och 15-19",
-        excerpt_source="Staffan Asplund — Mon 18:35",
-        to=["staffan.asplund@etha-consultancy.com"],
-        cc=[],
-        subject="Re: Insplan Introduction",
-        draft=(
-            "Hej Staffan,\n\n"
-            "Tack! Jag slår en signal ikväll runt 20:00. Passar det inte tar vi 07:30 imorgon "
-            "istället - säg till vilket du föredrar.\n\n"
-            "// Kim"
-        ),
-        caution=(
-            "Commits you to calling tonight. Swap to the morning slot if the evening is not "
-            "realistic."
-        ),
-    ),
-    Dossier(
         key="ekholm_dates",
         title="Daniel Ekholm — came back with dates, needs you to pick one",
         counterpart="Daniel Ekholm (KPMG)",
