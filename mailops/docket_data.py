@@ -29,6 +29,65 @@ class Dossier:
 
 DOSSIERS: list[Dossier] = [
     Dossier(
+        key="staffan",
+        title="Staffan Asplund — gave you call windows, one is tonight",
+        counterpart="Staffan Asplund (Etha Consultancy) · Insplan",
+        severity="urgent",
+        age="you asked at 16:32 · he answered 18:35",
+        why=(
+            'You sent Staffan the Insplan pack marked "your eyes only" and asked when he could '
+            "talk. He came straight back with his windows: tonight until 22:00, then tomorrow "
+            "07:00–11:00 and 15:00–19:00. He has answered and is waiting on you to name a time — "
+            "and the first window closes in a few hours."
+        ),
+        excerpt="ida till 22 — i morgon 7-11 och 15-19",
+        excerpt_source="Staffan Asplund — Mon 18:35",
+        to=["staffan.asplund@etha-consultancy.com"],
+        cc=[],
+        subject="Re: Insplan Introduction",
+        draft=(
+            "Hej Staffan,\n\n"
+            "Tack! Jag slår en signal ikväll runt 20:00. Passar det inte tar vi 07:30 imorgon "
+            "istället - säg till vilket du föredrar.\n\n"
+            "// Kim"
+        ),
+        caution=(
+            "Commits you to calling tonight. Swap to the morning slot if the evening is not "
+            "realistic."
+        ),
+    ),
+    Dossier(
+        key="ekholm_dates",
+        title="Daniel Ekholm — came back with dates, needs you to pick one",
+        counterpart="Daniel Ekholm (KPMG)",
+        severity="medium",
+        age="you replied 18:00 · he answered 18:26",
+        why=(
+            "You answered his lunch request at 18:00 and asked when suited him. He offered "
+            "tomorrow or Friday this week, or Monday–Tuesday next week, and asked whether one of "
+            "those works or whether to aim further out. Ball back with you."
+        ),
+        excerpt=(
+            "Imorgon lr fredag den här veckan, och mån-tis nästa vecka funkar bra för mig. Någon "
+            "av dessa dagar som funkar för dig lr skall vi försöka hitta en tid lite längre fram?"
+        ),
+        excerpt_source="Daniel Ekholm — Mon 18:26",
+        to=["daniel.ekholm@kpmg.se"],
+        cc=[],
+        subject="Re: Lunch",
+        draft=(
+            "Hej Daniel,\n\n"
+            "Fredag funkar bäst för mig den här veckan - säg 12:00? Passar inte det landar vi på "
+            "måndag eller tisdag nästa vecka istället.\n\n"
+            "Mvh,\n"
+            "Kim"
+        ),
+        caution=(
+            "Check Friday against the AI review lunch — that moved out of Friday when you "
+            "redirected Philip, but the new slot is not booked yet."
+        ),
+    ),
+    Dossier(
         key="marcus",
         title="Marcus Thomasson — offered you dates, went unanswered for 5 days",
         counterpart="Marcus Thomasson (M.A.C.O Business Development)",
@@ -71,142 +130,6 @@ DOSSIERS: list[Dossier] = [
         caution=(
             "Assumes Wednesday the 19th is your Denmark day (per the Boregruppen thread) — check "
             "the calendar first. You also still owe him the digitalisation draft."
-        ),
-    ),
-    Dossier(
-        key="attest_levels",
-        title="Attest levels — Andreas and Mikael are both waiting on your call",
-        counterpart="Andreas Bladh & Mikael Nilsson (Ametalis)",
-        severity="medium",
-        age="Andreas asked 10:57 · Mikael added 16:51",
-        why=(
-            "Andreas asked this morning what volume levels are reasonable for the attest rights "
-            "in the VD-instruktion. This afternoon Mikael came in on the same thread proposing "
-            "they keep it simple for now — a light policy plus a power of attorney — and then "
-            "land proper documents for VD-instruktion, ägardirektiv and attestordning. Neither "
-            "can finish without a direction, and it has been sitting most of the day."
-        ),
-        excerpt=(
-            "Vi kan väl hålla det enkelt typ som vi va inne på för nån vecka sen, enkel policy "
-            "eventuellt kombinerat med en fullmakt. Sen behöver vi se till att landa en ordentlig "
-            "policy på: vd instruktion / Ägardirektiv / Attestordning"
-        ),
-        excerpt_source="Mikael Nilsson — Mon 16:51",
-        to=["andreas.bladh@ametalis.com", "mikael.nilsson@ametalis.com"],
-        cc=[],
-        subject="Re: Firmateckning",
-        draft=(
-            "Hej,\n\n"
-            "Enig med Mikael - vi kör en enkel policy nu, eventuellt kombinerad med fullmakt, så "
-            "vi inte blockerar löpande ärenden.\n\n"
-            "Parallellt landar vi de tre: VD-instruktion, ägardirektiv och attestordning. "
-            "Andreas, du driver utkastet.\n\n"
-            "Kring attestnivåer vill jag se ett förslag från er två snarare än att jag sätter "
-            "siffrorna själv. Ta fram nivåer utifrån vad som faktiskt passerar idag - volym och "
-            "typ av beslut - så tar vi ställning utifrån det.\n\n"
-            "// Kim"
-        ),
-        caution=(
-            "This delegates the attest levels back to them with a frame rather than answering "
-            "Andreas's question directly. If you already have numbers in mind, say them instead."
-        ),
-    ),
-    Dossier(
-        key="eric_invoice",
-        title="Eric's August invoice — two questions blocking him",
-        counterpart="Eric Edholm (consultant)",
-        severity="medium",
-        age="received 16:54",
-        why=(
-            "Eric wants to invoice for August and needs two facts first: which legal entity to "
-            "bill, and which address to send it to. He cannot proceed without an answer, and he "
-            "is the constrained resource in the AI work — worth not leaving him on admin."
-        ),
-        excerpt=(
-            "Tänkte fakturera augusti 💸 Ska jag ställa ut fakturan mot Ametalis AB? Och ska den "
-            "skickas till någon speciell email?"
-        ),
-        excerpt_source="Eric Edholm — Mon 16:54",
-        to=["eric@ericgustaf.com"],
-        cc=["mikael.nilsson@ametalis.com"],
-        subject="Re: Faktura",
-        draft=(
-            "Hej Eric,\n\n"
-            "Ja, ställ den mot Ametalis AB.\n\n"
-            "Jag sätter Mikael på cc - han ger dig rätt fakturaadress så den går rätt in i "
-            "systemet direkt.\n\n"
-            "// Kim"
-        ),
-        caution=(
-            "Confirms Ametalis AB as the billed entity — check that's right if any of the work sat "
-            "under a portfolio company. The invoice address is left to Mikael, not guessed."
-        ),
-    ),
-    Dossier(
-        key="syntari",
-        title="Syntari — Philip has delivered the recommendation you asked for",
-        counterpart="Philip Hygrell (Ametalis)",
-        severity="urgent",
-        age="arrived 15:27 · you asked for this at 09:58",
-        why=(
-            "This morning you asked Philip for a short recommendation on Syntari so the two of "
-            "you could align internally before answering them. He recommends putting it on ice — "
-            "partly because he thinks Ametalis can build much of the same thing with Eric, but "
-            "mainly because he doubts the portfolio companies are ready to migrate off their "
-            "existing systems now. He ends with two direct questions, so nothing moves until you "
-            "answer. Syntari (Rafi, Jennifer, Dan) have been waiting on a meeting date since "
-            "13 August."
-        ),
-        excerpt=(
-            "Största anledningen är dock att jag är osäker på om våra bolag är redo för en stor, "
-            "gemensam, satsning i dagsläget… Vad tänker du? Hur vill du att jag svarar?"
-        ),
-        excerpt_source="Philip Hygrell — Mon 15:27",
-        to=["philip.hygrell@ametalis.com"],
-        cc=[],
-        subject="Sv: Syntari x Ametalis",
-        draft=(
-            "Hej Philip,\n\n"
-            "Tack - bra och tydlig analys, och jag delar din bild. Vi lägger Syntari på is för "
-            "nu. Huvudskälet för mig är samma som ditt: bolagen är inte redo för en gemensam "
-            "systemflytt i det här läget, och då blir det fel att dra igång.\n\n"
-            "Innan du svarar dem tar vi 15 min så vi är överens om budskapet - lägg in en tid "
-            "imorgon.\n\n"
-            "Mot Syntari vill jag att vi är vänliga men tydliga: vi pausar, vi stänger inte "
-            "dörren, och vi återkommer när vi ser att bolagen har kapacitet.\n\n"
-            "// Kim"
-        ),
-        caution=(
-            "This draft commits to pausing Syntari. That is your call, not Philip's — read his "
-            "reasoning before sending."
-        ),
-    ),
-    Dossier(
-        key="ekholm",
-        title="Daniel Ekholm (KPMG) — lunch request unanswered",
-        counterpart="Daniel Ekholm (KPMG)",
-        severity="medium",
-        age="received 13:37 today",
-        why=(
-            "Daniel worked with you on project Matteus during your Norvestor years and is asking "
-            "for a lunch in the coming weeks. Small ask, easy to lose in a busy inbox — flagged "
-            "now rather than after it has aged a week."
-        ),
-        excerpt=(
-            "Var ett bra tag sen vi jobbade tillsammans på projekt Matteus (när du var på "
-            "Norvestor), vad sägs om att ta en lunch de kommande veckorna?"
-        ),
-        excerpt_source="Daniel Ekholm — Mon 13:37",
-        to=["daniel.ekholm@kpmg.se"],
-        cc=[],
-        subject="Re: Lunch",
-        draft=(
-            "Hej Daniel,\n\n"
-            "Kul att höra från dig! Sommaren var bra, tack - hoppas detsamma för dig.\n\n"
-            "Lunch låter bra. Skicka gärna ett par förslag på dagar de kommande veckorna, så ser "
-            "jag vad som funkar.\n\n"
-            "Mvh,\n"
-            "Kim"
         ),
     ),
     Dossier(
