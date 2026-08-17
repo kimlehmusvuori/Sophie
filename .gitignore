@@ -49,3 +49,4 @@ build/
 
 # Mail docket: cached Microsoft refresh token
 mailops/.msal_token_cache.json
+mailops/.env
