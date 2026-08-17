@@ -29,33 +29,36 @@ class Dossier:
 
 DOSSIERS: list[Dossier] = [
     Dossier(
-        key="markavtal",
-        title="Svenska Markavtal AB — ready to sign, waiting on you",
-        counterpart="Fredrik Ericsson (CEO, Svenska Markavtal AB) · cc Erik Vennerlund (Acquify)",
+        key="firmateckning",
+        title="Firmateckning — Linus is about to file with only his signature",
+        counterpart="Linus Nilsson (Relement Miljö Väst AB) · cc Andreas Bladh",
         severity="urgent",
-        age="received Thu 13 Aug · still unread · open 4 days",
+        age="nudged this morning · thread dormant since 2 Aug",
         why=(
-            "Live acquisition. Fredrik said he is ready to move to decision and signing once a "
-            "follow-up meeting clears the last questions, and asked you to propose a time "
-            '"next week" — that week has now started. Nothing has gone back to him.'
+            "Linus has come back on a thread that went quiet after the 2 August reply, asking "
+            "whether to send the filing in with only his own signature. In July this was noted "
+            'as normally "två i grupp" — two signatories in combination — so a single-signed '
+            "filing risks not holding. He is waiting on a yes or no before acting."
         ),
         excerpt=(
-            "Ursäkta sen återkoppling här, vi har fullt upp med några projekt som äter upp min "
-            "tid. Kan vi boka ett uppföljningsmöte nästa vecka, när vi är klara med några frågor "
-            "så borde vi vara klara för beslut och signering därefter. Välj en tid som passar "
-            "ert schema - förutom måndag."
+            "Hade du löst någon signatur på denna eller ska jag testa att skicka iväg den med "
+            "bara min signatur?"
         ),
-        excerpt_source="Fredrik Ericsson — Thu 13 Aug",
-        to=["fredrik@markavtal.se"],
-        cc=["erik@acquify.se"],
-        subject="Re: Ametalis indikativa bud",
+        excerpt_source="Linus Nilsson — Mon 10:30",
+        to=["linus.nilsson@relement.se"],
+        cc=["andreas.bladh@ametalis.com"],
+        subject="Sv: Firmateckning",
         draft=(
-            "Hej Fredrik,\n\n"
-            "Toppen, låter som ni är på god väg!\n\n"
-            "Onsdag eftermiddag eller torsdag förmiddag denna vecka funkar bra för oss - säg "
-            "vilken tid som passar er bäst så bokar vi in och tar sista frågorna innan "
-            "signering.\n\n"
+            "Hej Linus,\n\n"
+            "Vänta med att skicka in den med bara din signatur - om firmateckningen är två i "
+            "förening håller den inte då.\n\n"
+            "Jag kollar upp vad som gäller och återkommer till dig idag, så vi får in den rätt "
+            "från början.\n\n"
             "// Kim"
+        ),
+        caution=(
+            "This promises an answer today — worth checking the registered signatory rule with "
+            "Andreas or Mikael first."
         ),
     ),
     Dossier(
