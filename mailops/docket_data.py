@@ -29,6 +29,73 @@ class Dossier:
 
 DOSSIERS: list[Dossier] = [
     Dossier(
+        key="syntari",
+        title="Syntari — Philip has delivered the recommendation you asked for",
+        counterpart="Philip Hygrell (Ametalis)",
+        severity="urgent",
+        age="arrived 15:27 · you asked for this at 09:58",
+        why=(
+            "This morning you asked Philip for a short recommendation on Syntari so the two of "
+            "you could align internally before answering them. He recommends putting it on ice — "
+            "partly because he thinks Ametalis can build much of the same thing with Eric, but "
+            "mainly because he doubts the portfolio companies are ready to migrate off their "
+            "existing systems now. He ends with two direct questions, so nothing moves until you "
+            "answer. Syntari (Rafi, Jennifer, Dan) have been waiting on a meeting date since "
+            "13 August."
+        ),
+        excerpt=(
+            "Största anledningen är dock att jag är osäker på om våra bolag är redo för en stor, "
+            "gemensam, satsning i dagsläget… Vad tänker du? Hur vill du att jag svarar?"
+        ),
+        excerpt_source="Philip Hygrell — Mon 15:27",
+        to=["philip.hygrell@ametalis.com"],
+        cc=[],
+        subject="Sv: Syntari x Ametalis",
+        draft=(
+            "Hej Philip,\n\n"
+            "Tack - bra och tydlig analys, och jag delar din bild. Vi lägger Syntari på is för "
+            "nu. Huvudskälet för mig är samma som ditt: bolagen är inte redo för en gemensam "
+            "systemflytt i det här läget, och då blir det fel att dra igång.\n\n"
+            "Innan du svarar dem tar vi 15 min så vi är överens om budskapet - lägg in en tid "
+            "imorgon.\n\n"
+            "Mot Syntari vill jag att vi är vänliga men tydliga: vi pausar, vi stänger inte "
+            "dörren, och vi återkommer när vi ser att bolagen har kapacitet.\n\n"
+            "// Kim"
+        ),
+        caution=(
+            "This draft commits to pausing Syntari. That is your call, not Philip's — read his "
+            "reasoning before sending."
+        ),
+    ),
+    Dossier(
+        key="ekholm",
+        title="Daniel Ekholm (KPMG) — lunch request unanswered",
+        counterpart="Daniel Ekholm (KPMG)",
+        severity="medium",
+        age="received 13:37 today",
+        why=(
+            "Daniel worked with you on project Matteus during your Norvestor years and is asking "
+            "for a lunch in the coming weeks. Small ask, easy to lose in a busy inbox — flagged "
+            "now rather than after it has aged a week."
+        ),
+        excerpt=(
+            "Var ett bra tag sen vi jobbade tillsammans på projekt Matteus (när du var på "
+            "Norvestor), vad sägs om att ta en lunch de kommande veckorna?"
+        ),
+        excerpt_source="Daniel Ekholm — Mon 13:37",
+        to=["daniel.ekholm@kpmg.se"],
+        cc=[],
+        subject="Re: Lunch",
+        draft=(
+            "Hej Daniel,\n\n"
+            "Kul att höra från dig! Sommaren var bra, tack - hoppas detsamma för dig.\n\n"
+            "Lunch låter bra. Skicka gärna ett par förslag på dagar de kommande veckorna, så ser "
+            "jag vad som funkar.\n\n"
+            "Mvh,\n"
+            "Kim"
+        ),
+    ),
+    Dossier(
         key="boregruppen",
         title="Boregruppen intro — Wednesday pickup not confirmed",
         counterpart="Jens Waldorff (W+) · cc Maximus Ståel von Holstein",
