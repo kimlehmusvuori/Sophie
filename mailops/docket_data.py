@@ -33,7 +33,7 @@ DOSSIERS: list[Dossier] = [
         title="PFAS reference — Relement is bidding the same tender",
         counterpart="Marko Filipovic (Sellén Filipovic) · via Linus Nilsson, Relement",
         severity="urgent",
-        age="Emma handed it to you by name at 15:17, in front of Marko",
+        age="Emma handed it to you by name Tue 15:17, in front of Marko",
         why=(
             "You told Marko at 11:12 that you thought the group had the references and would come "
             "back asap, then forwarded the request to Relement and Envima. Six minutes later Linus "
@@ -80,7 +80,7 @@ DOSSIERS: list[Dossier] = [
         title="Jonathan Wintzell (Needo) — tried to call, wants lunch",
         counterpart="Jonathan Wintzell (CEO, Needo)",
         severity="medium",
-        age="received 11:02",
+        age="received Tue 11:02 · open overnight",
         why=(
             "He tried to reach you by phone and could not get through, then followed up in writing "
             "asking for a lunch. A missed call plus an unanswered mail is the combination that "
@@ -107,13 +107,14 @@ DOSSIERS: list[Dossier] = [
         title="Daniel Ekholm — came back with dates, needs you to pick one",
         counterpart="Daniel Ekholm (KPMG)",
         severity="medium",
-        age="he answered 18:26 last night · Friday has since gone",
+        age="he answered Mon 18:26 · Friday has since gone · two days open",
         why=(
-            "You answered his lunch request last night and asked when suited him. He offered today "
-            "or Friday this week, or Monday–Tuesday next week. Today is nearly gone, and Friday "
-            "closed at 13:17 when you gave the slot to Mårten — Friday 21/8 12:00–13:00 is now "
-            "his lunch, with the M&A update, Andreas and Mikael's July review either side of it. "
-            "So the answer to Daniel is next week."
+            "You answered his lunch request on Monday evening and asked when suited him. He "
+            "offered Tuesday or Friday this week, or Monday–Tuesday next week. Tuesday has passed "
+            "unanswered, and Friday closed at 13:17 when you gave the slot to Mårten — Friday 21/8 "
+            "12:00–13:00 is now his lunch, with the M&A update, Andreas and Mikael's July review "
+            "either side of it. So the answer to Daniel is next week, and he has now been waiting "
+            "two days."
         ),
         excerpt=(
             "Imorgon lr fredag den här veckan, och mån-tis nästa vecka funkar bra för mig. Någon "
@@ -137,21 +138,21 @@ DOSSIERS: list[Dossier] = [
     ),
     Dossier(
         key="marcus",
-        title="Marcus Thomasson — offered you dates, went unanswered for 6 days",
+        title="Marcus Thomasson — offered you dates, went unanswered for a week",
         counterpart="Marcus Thomasson (M.A.C.O Business Development)",
         severity="urgent",
-        age="received Wed 12 Aug 20:56 · open 6 days",
+        age="received Wed 12 Aug 20:56 · open 7 days",
         why=(
             "Marcus answered the two wildlife-camera questions in detail and offered concrete "
             "dates: 19 or 20 August, or 1 September in Stockholm from ~15:00. He was explicit "
             "that he has no further travel days in August. On 13 August the mail was forwarded "
-            "to Mikael but Marcus himself never got a reply — six days of silence from his side. "
-            "Both August dates are now gone: the 19th is your Copenhagen day (B&H at 13:00, Norion "
-            "at 16:00) and the 20th is the Envima board strategy day, 09:00-16:00. Since he has no "
-            "further travel days in August, 1 September from 15:00 is the only date left — which "
-            "makes the six days of silence costlier than it looked. There is also an outstanding "
-            "promise of the digitalisation draft, and a stated wish to meet before the 9 September "
-            "strategy day."
+            "to Mikael but Marcus himself never got a reply — a week of silence from his side. "
+            "Both August dates are now gone: the 19th is today and you are in Copenhagen (B&H at "
+            "13:00, Norion at 16:00), and the 20th is the Envima board strategy day, 09:00-16:00. "
+            "Since he has no further travel days in August, 1 September from 15:00 is the only "
+            "date left — which makes the silence costlier than it looked. There is also an "
+            "outstanding promise of the digitalisation draft, and a stated wish to meet before "
+            "the 9 September strategy day."
         ),
         excerpt=(
             "Den 1 september är jag i Stockholm för ett styrelsemöte med Freedom och kan träffas "
@@ -189,11 +190,11 @@ DOSSIERS: list[Dossier] = [
         title="Boregruppen — now collides with Norion on Wednesday",
         counterpart="Jens Waldorff (W+) · cc Maximus Ståel von Holstein",
         severity="urgent",
-        age="Wednesday is tomorrow · flights now booked, 11:00-19:00 gone",
+        age="Copenhagen is today · you fly at 11:00 and land back 20:10",
         why=(
-            "The day is now fixed: you booked the flights at 17:34 — SK1421 out of Arlanda at "
-            "11:00, landing Kastrup 12:10, returning to Arlanda by 20:10 the same evening. That "
-            "settles what fits. B&H is at 13:00, Norion 16:00-16:55 at their premises, and the "
+            "The day is now fixed and it is today: SK1421 out of Arlanda at 11:00, landing "
+            "Kastrup 12:10, returning to Arlanda by 20:10 this evening. That settles what fits. "
+            "B&H is at 13:00, Norion 16:00-16:55 at their premises, and the "
             "return flight leaves Copenhagen around 19:00. There is no room left for Boregruppen "
             "after Norion, and Jens still has not been told his 4pm plan is taken. The only "
             "opening is roughly 15:00, between B&H and Norion. Your 14 August question is also "
@@ -225,10 +226,10 @@ DOSSIERS: list[Dossier] = [
             "Kim"
         ),
         caution=(
-            "Two calls sit inside the flight window, not one: Implement 11:00-11:30 is the "
-            "departure slot, and Philip's AI-outing session 11:30-12:00 is mid-air - you land at "
-            "12:10. Both are still tentative on your calendar and both need moving tonight. B&H, "
-            "Norion and the flights themselves are still absent from it."
+            "Two calls sit inside this morning's flight window, not one: Implement 11:00-11:30 "
+            "is the departure slot, and Philip's AI-outing session 11:30-12:00 is mid-air - you "
+            "land at 12:10. Both are still tentative on your calendar and neither has been moved. "
+            "B&H, Norion and the flights themselves are still absent from it."
         ),
     ),
     Dossier(
