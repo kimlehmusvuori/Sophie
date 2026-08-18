@@ -29,6 +29,47 @@ class Dossier:
 
 DOSSIERS: list[Dossier] = [
     Dossier(
+        key="filipovic_pfas",
+        title="Marko Filipovic — asking whether the group has a PFAS reference",
+        counterpart="Marko Filipovic (Sellén Filipovic)",
+        severity="medium",
+        age="received 09:43",
+        why=(
+            "He is bidding into a large Myndigheten för civilt försvar (MCF) procurement on PFAS "
+            "and needs a qualifying reference. The criteria are specific: MTU, riskbedömning and "
+            "åtgärdsutredning, completed after 2022, above the stated value threshold. This is "
+            "inbound business development — a usable reference from Envima or another group "
+            "company could put Ametalis into a public procurement. He spoke to Maximus last week, "
+            "so he is already warm."
+        ),
+        excerpt=(
+            "Jag kontaktar dig för att se om någon i din koncern har följande referens till en "
+            "större upphandling av Myndigheten för civilt försvar (MCF) gällande PFAS… MTU / "
+            "Riskbedömning / Åtgärdsutredning / Slutförd efter 2022 / >500 000TSEK."
+        ),
+        excerpt_source="Marko Filipovic — Tue 09:43",
+        to=["marko@sellenfilipovic.se"],
+        cc=[],
+        subject="Re: Referens till en större upphandling",
+        draft=(
+            "Hej Marko,\n\n"
+            "Tack - sommaren var bra, hoppas detsamma för dig.\n\n"
+            "Jag kollar med bolagen i gruppen om vi har en PFAS-referens som möter kriterierna "
+            "(MTU, riskbedömning, åtgärdsutredning, slutförd efter 2022). Återkommer inom ett par "
+            "dagar.\n\n"
+            "En kontrollfråga: ska tröskeln läsas som >500 TSEK eller >500 000 TSEK? Det senare "
+            "känns högt för ett enskilt uppdrag, och det avgör vilka projekt som är relevanta att "
+            "leta fram.\n\n"
+            "Mvh,\n"
+            "Kim"
+        ),
+        caution=(
+            "Commits you to coming back within a couple of days — the actual check needs to go to "
+            'Envima and the other environmental companies. ">500 000 TSEK" reads like a typo, '
+            "which is why the draft asks."
+        ),
+    ),
+    Dossier(
         key="syntari_october",
         title="Syntari — Philip wants sign-off before he writes to them",
         counterpart="Philip Hygrell (Ametalis)",
