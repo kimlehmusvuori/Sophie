@@ -33,73 +33,44 @@ DOSSIERS: list[Dossier] = [
         title="PFAS reference — Relement is bidding the same tender",
         counterpart="Marko Filipovic (Sellén Filipovic) · via Linus Nilsson, Relement",
         severity="urgent",
-        age="he is now waiting — acknowledged 12:43",
+        age="only you can close this — Emma left it open at 14:06",
         why=(
             "You told Marko at 11:12 that you thought the group had the references and would come "
             "back asap, then forwarded the request to Relement and Envima. Six minutes later Linus "
             "answered: Relement is bidding on the same MCF procurement themselves, with all the "
-            "competencies and references in-house, and expects hard competition. So the honest "
-            "answer is no longer the one you gave — supplying a reference would be arming a rival "
-            'bid against your own portfolio company. Marko wrote back at 12:43 — "Tack för att '
-            'du kollar!" — so he is now explicitly waiting on you, which makes the delay more '
-            "visible than the answer itself."
+            "competencies and references in-house. Supplying a reference would be arming a rival "
+            "bid against your own portfolio company. At 14:06 Emma answered Marko directly and "
+            "cleared the rest of the group — Envima is SME-scale, Etha, Westberg and Natur og "
+            "Samfunn have no PFAS — but she also told him Relement would come back to him soon. "
+            "She does not know they are bidding. So the only open promise in the thread is one "
+            "you cannot keep, and you are the only person who knows that."
         ),
         excerpt=(
-            "Yes, den kommer vi att lämna på och vi har alla kompetenser och referenser för att "
-            "lämna på den in-house hos oss… det är nog många som kan lämna så riskerar att bli "
-            "hård konkurrens."
+            "Vi fick dock just in ett systerföretag i gruppen som heter Relement. Kim har kollat "
+            "med dem, så de återkommer snart."
         ),
-        excerpt_source="Linus Nilsson — Tue 11:18",
+        excerpt_source="Emma Karlsson to Marko, you on Cc — Tue 14:06",
         to=["marko@sellenfilipovic.se"],
-        cc=[],
+        cc=["emma.karlsson@envima.se", "anna.lindberg@envima.se"],
         subject="Re: Referens till en större upphandling",
         draft=(
             "Hej Marko,\n\n"
-            "Jag har kollat internt, och svaret blev inte det jag trodde när jag skrev i "
-            "morse.\n\n"
-            "Relement, ett av våra bolag, lämnar anbud på samma upphandling själva och har "
-            "kompetenserna och referenserna in-house. Då kan jag inte gå in och stötta ett "
-            "konkurrerande anbud med referenser - det vore inte rätt mot dem.\n\n"
-            "Ursäkta att jag gav dig en annan bild tidigare idag. Hör gärna av dig i andra "
-            "sammanhang, det finns mycket annat vi kan prata om.\n\n"
+            "Emma har redan svarat dig om Envima och de andra bolagen, så jag fyller i den sista "
+            "biten.\n\n"
+            "Relement lämnar anbud på samma upphandling själva och har kompetenserna och "
+            "referenserna in-house. Då kan jag inte gå in och stötta ett konkurrerande anbud med "
+            "referenser - det vore inte rätt mot dem. Så du behöver inte vänta på mer från vår "
+            "sida i den här.\n\n"
+            "Ursäkta att jag gav dig en annan bild i morse, innan jag hade kollat. Hör gärna av "
+            "dig i andra sammanhang, det finns mycket annat vi kan prata om.\n\n"
             "Mvh,\n"
             "Kim"
         ),
         caution=(
-            "Envima (Emma, Anna) have not answered yet. If they hold something clearly outside "
-            "Relement's scope there may be a narrow path — but the conflict stands either way, "
-            "and leaving Marko waiting is worse than telling him now."
-        ),
-    ),
-    Dossier(
-        key="marten_lunch",
-        title="Mårten Werner — two lunch slots offered",
-        counterpart="Mårten Werner (MVI)",
-        severity="medium",
-        age="you asked 08:51 · he answered 11:16",
-        why=(
-            "He has two gaps: Friday 21/8, or Monday 24/8 (he would prefer 11:45). Straightforward "
-            "pick — but note Friday is now contested: your draft to Daniel Ekholm also proposes "
-            "Friday 12:00, and the AI review lunch vacated Friday without being rebooked."
-        ),
-        excerpt=(
-            "Det är full rulle nu såhär års men jag har ett par luckor för lunch. Antingen nu på "
-            "fredag 21/8 eller måndag 24/8 (gärna 11.45). Funkar någon av de dagarna för dig?"
-        ),
-        excerpt_source="Mårten Werner — Tue 11:16",
-        to=["marten.werner@mvi.se"],
-        cc=[],
-        subject="RE: Lunch & strategi-snack",
-        draft=(
-            "Hej Mårten,\n\n"
-            "Allt bra här, tack!\n\n"
-            "Måndag 24/8 kl. 11.45 tar vi - då slipper vi trängseln på fredagen. Säg till om du "
-            "vill att jag bokar plats någonstans.\n\n"
-            "Mvh, Kim"
-        ),
-        caution=(
-            "Picks Monday to keep Friday free for Ekholm. Swap if you would rather see Mårten "
-            "first."
+            "Emma and Anna are on Cc so Emma sees the promise closed — she is expecting Relement "
+            "to answer Marko and would otherwise chase them. Separately: her mail told an outside "
+            "party that Relement was just acquired into the group. Worth a word with her, but not "
+            "in this reply."
         ),
     ),
     Dossier(
@@ -134,12 +105,13 @@ DOSSIERS: list[Dossier] = [
         title="Daniel Ekholm — came back with dates, needs you to pick one",
         counterpart="Daniel Ekholm (KPMG)",
         severity="medium",
-        age="you replied 18:00 · he answered 18:26 last night",
+        age="he answered 18:26 last night · Friday has since gone",
         why=(
             "You answered his lunch request last night and asked when suited him. He offered today "
-            "or Friday this week, or Monday–Tuesday next week, and asked whether one of "
-            "those works or whether to aim further out. Ball back with you — and one of "
-            "his options is today."
+            "or Friday this week, or Monday–Tuesday next week. Today is nearly gone, and Friday "
+            "closed at 13:17 when you gave the slot to Mårten — Friday 21/8 12:00–13:00 is now "
+            "his lunch, with the M&A update, Andreas and Mikael's July review either side of it. "
+            "So the answer to Daniel is next week."
         ),
         excerpt=(
             "Imorgon lr fredag den här veckan, och mån-tis nästa vecka funkar bra för mig. Någon "
@@ -151,14 +123,14 @@ DOSSIERS: list[Dossier] = [
         subject="Re: Lunch",
         draft=(
             "Hej Daniel,\n\n"
-            "Fredag funkar bäst för mig den här veckan - säg 12:00? Passar inte det landar vi på "
-            "måndag eller tisdag nästa vecka istället.\n\n"
+            "Den här veckan blev fullbokad, så låt oss ta nästa vecka istället. Måndag 24/8 kl. "
+            "12:00 funkar bra för mig - annars tisdag 25/8, i princip när du vill.\n\n"
             "Mvh,\n"
             "Kim"
         ),
         caution=(
-            "Check Friday against the AI review lunch — that moved out of Friday when you "
-            "redirected Philip, but the new slot is not booked yet."
+            "Monday and Tuesday next week are both open at lunch. Monday has an SJC check-in at "
+            "14:45, so a Monday lunch is fine but not open-ended."
         ),
     ),
     Dossier(
