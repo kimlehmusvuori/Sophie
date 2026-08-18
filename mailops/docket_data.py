@@ -33,15 +33,16 @@ DOSSIERS: list[Dossier] = [
         title="PFAS reference — Relement is bidding the same tender",
         counterpart="Marko Filipovic (Sellén Filipovic) · via Linus Nilsson, Relement",
         severity="urgent",
-        age='you promised "asap" at 11:12 · Linus answered 11:18',
+        age="he is now waiting — acknowledged 12:43",
         why=(
             "You told Marko at 11:12 that you thought the group had the references and would come "
             "back asap, then forwarded the request to Relement and Envima. Six minutes later Linus "
             "answered: Relement is bidding on the same MCF procurement themselves, with all the "
             "competencies and references in-house, and expects hard competition. So the honest "
             "answer is no longer the one you gave — supplying a reference would be arming a rival "
-            "bid against your own portfolio company. Marko is waiting, and the sooner he knows the "
-            "better for the relationship."
+            'bid against your own portfolio company. Marko wrote back at 12:43 — "Tack för att '
+            'du kollar!" — so he is now explicitly waiting on you, which makes the delay more '
+            "visible than the answer itself."
         ),
         excerpt=(
             "Yes, den kommer vi att lämna på och vi har alla kompetenser och referenser för att "
