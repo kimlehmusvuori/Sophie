@@ -225,10 +225,10 @@ DOSSIERS: list[Dossier] = [
             "Kim"
         ),
         caution=(
-            "Your 11:00-11:30 Implement call is exactly the departure slot - SK1421 leaves Arlanda "
-            "at 11:00, with Philip and two Implement people on the invite. That needs moving "
-            "tonight, not tomorrow morning. B&H, Norion and the flights are still absent from "
-            "your Outlook calendar."
+            "Two calls sit inside the flight window, not one: Implement 11:00-11:30 is the "
+            "departure slot, and Philip's AI-outing session 11:30-12:00 is mid-air - you land at "
+            "12:10. Both are still tentative on your calendar and both need moving tonight. B&H, "
+            "Norion and the flights themselves are still absent from it."
         ),
     ),
     Dossier(
