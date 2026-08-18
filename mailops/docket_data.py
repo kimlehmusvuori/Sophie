@@ -189,18 +189,17 @@ DOSSIERS: list[Dossier] = [
         title="Boregruppen — now collides with Norion on Wednesday",
         counterpart="Jens Waldorff (W+) · cc Maximus Ståel von Holstein",
         severity="urgent",
-        age="Wednesday is tomorrow · none of it is on your calendar",
+        age="Wednesday is tomorrow · flights now booked, 11:00-19:00 gone",
         why=(
-            "Correcting an earlier reading of this. Bjørn sent the Norion invitation at 22:35 last "
-            "night and Jens forwarded it at 22:39 — Wednesday 16:00–16:55 at their premises — but "
-            "it came as an .ics attachment addressed to Jens, so it is not on your calendar and "
-            "the mail is still unread. Neither is the 13:00 Bøgh & Helstrup meeting Lars just "
-            "confirmed. Your whole Copenhagen Wednesday exists only in other people's inboxes, "
-            "while an 11:00-11:30 Implement call still sits on your calendar. Jens had pencilled "
-            "Boregruppen (Tonny) for the same Wednesday around 4pm, which Norion now occupies, and "
-            "he has not been told. Your 14 August question also remains unanswered: you asked for "
-            "Boregruppen's revenue split because drilling operations and non-advisory contractor "
-            "work may make it a poor fit."
+            "The day is now fixed: you booked the flights at 17:34 — SK1421 out of Arlanda at "
+            "11:00, landing Kastrup 12:10, returning to Arlanda by 20:10 the same evening. That "
+            "settles what fits. B&H is at 13:00, Norion 16:00-16:55 at their premises, and the "
+            "return flight leaves Copenhagen around 19:00. There is no room left for Boregruppen "
+            "after Norion, and Jens still has not been told his 4pm plan is taken. The only "
+            "opening is roughly 15:00, between B&H and Norion. Your 14 August question is also "
+            "still unanswered: you asked for Boregruppen's revenue split because drilling "
+            "operations and non-advisory contractor work may make it a poor fit, so a squeezed "
+            "meeting may not be worth arranging at all."
         ),
         excerpt=(
             "I suggest Wednesday after the B&H meeting, maybe around 4 pm. Then I can pick you up "
@@ -212,9 +211,11 @@ DOSSIERS: list[Dossier] = [
         subject="Re: Quick update: kLAR Miljørådgivning",
         draft=(
             "Hi Jens,\n\n"
-            "Thanks - noted, Norion Wednesday 16:00-16:55 at their place.\n\n"
-            "That means Boregruppen cannot also be at 4pm. Can Tonny take us earlier in the "
-            "afternoon, straight after B&H? If not, let us move Boregruppen to another day.\n\n"
+            "Flights are booked: I land at Kastrup 12:10 and fly back around 19:00, so the day is "
+            "B&H at 13:00 and Norion 16:00-16:55.\n\n"
+            "That leaves no room for Boregruppen after Norion. If Tonny can take us around 15:00, "
+            "between the two, it works - otherwise let us move Boregruppen to another day rather "
+            "than rush it.\n\n"
             "Before we sit down with Tonny I would still like the revenue split. My hesitation is "
             "the drilling operations and the non-advisory contractor work; if that is a large "
             "share, Boregruppen is probably not the right fit for us and I would rather hold off "
@@ -224,9 +225,10 @@ DOSSIERS: list[Dossier] = [
             "Kim"
         ),
         caution=(
-            "None of Wednesday is on your Outlook calendar - not B&H at 13:00, not Norion at "
-            "16:00, not the flights. The 11:00-11:30 Implement call still is, and you cannot "
-            "take that from a plane. Worth blocking the day before you answer Jens."
+            "Your 11:00-11:30 Implement call is exactly the departure slot - SK1421 leaves Arlanda "
+            "at 11:00, with Philip and two Implement people on the invite. That needs moving "
+            "tonight, not tomorrow morning. B&H, Norion and the flights are still absent from "
+            "your Outlook calendar."
         ),
     ),
     Dossier(
