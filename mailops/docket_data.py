@@ -30,77 +30,102 @@ class Dossier:
 DOSSIERS: list[Dossier] = [
     Dossier(
         key="filipovic_pfas",
-        title="Marko Filipovic — asking whether the group has a PFAS reference",
-        counterpart="Marko Filipovic (Sellén Filipovic)",
-        severity="medium",
-        age="received 09:43",
+        title="PFAS reference — Relement is bidding the same tender",
+        counterpart="Marko Filipovic (Sellén Filipovic) · via Linus Nilsson, Relement",
+        severity="urgent",
+        age='you promised "asap" at 11:12 · Linus answered 11:18',
         why=(
-            "He is bidding into a large Myndigheten för civilt försvar (MCF) procurement on PFAS "
-            "and needs a qualifying reference. The criteria are specific: MTU, riskbedömning and "
-            "åtgärdsutredning, completed after 2022, above the stated value threshold. This is "
-            "inbound business development — a usable reference from Envima or another group "
-            "company could put Ametalis into a public procurement. He spoke to Maximus last week, "
-            "so he is already warm."
+            "You told Marko at 11:12 that you thought the group had the references and would come "
+            "back asap, then forwarded the request to Relement and Envima. Six minutes later Linus "
+            "answered: Relement is bidding on the same MCF procurement themselves, with all the "
+            "competencies and references in-house, and expects hard competition. So the honest "
+            "answer is no longer the one you gave — supplying a reference would be arming a rival "
+            "bid against your own portfolio company. Marko is waiting, and the sooner he knows the "
+            "better for the relationship."
         ),
         excerpt=(
-            "Jag kontaktar dig för att se om någon i din koncern har följande referens till en "
-            "större upphandling av Myndigheten för civilt försvar (MCF) gällande PFAS… MTU / "
-            "Riskbedömning / Åtgärdsutredning / Slutförd efter 2022 / >500 000TSEK."
+            "Yes, den kommer vi att lämna på och vi har alla kompetenser och referenser för att "
+            "lämna på den in-house hos oss… det är nog många som kan lämna så riskerar att bli "
+            "hård konkurrens."
         ),
-        excerpt_source="Marko Filipovic — Tue 09:43",
+        excerpt_source="Linus Nilsson — Tue 11:18",
         to=["marko@sellenfilipovic.se"],
         cc=[],
         subject="Re: Referens till en större upphandling",
         draft=(
             "Hej Marko,\n\n"
-            "Tack - sommaren var bra, hoppas detsamma för dig.\n\n"
-            "Jag kollar med bolagen i gruppen om vi har en PFAS-referens som möter kriterierna "
-            "(MTU, riskbedömning, åtgärdsutredning, slutförd efter 2022). Återkommer inom ett par "
-            "dagar.\n\n"
-            "En kontrollfråga: ska tröskeln läsas som >500 TSEK eller >500 000 TSEK? Det senare "
-            "känns högt för ett enskilt uppdrag, och det avgör vilka projekt som är relevanta att "
-            "leta fram.\n\n"
+            "Jag har kollat internt, och svaret blev inte det jag trodde när jag skrev i "
+            "morse.\n\n"
+            "Relement, ett av våra bolag, lämnar anbud på samma upphandling själva och har "
+            "kompetenserna och referenserna in-house. Då kan jag inte gå in och stötta ett "
+            "konkurrerande anbud med referenser - det vore inte rätt mot dem.\n\n"
+            "Ursäkta att jag gav dig en annan bild tidigare idag. Hör gärna av dig i andra "
+            "sammanhang, det finns mycket annat vi kan prata om.\n\n"
             "Mvh,\n"
             "Kim"
         ),
         caution=(
-            "Commits you to coming back within a couple of days — the actual check needs to go to "
-            'Envima and the other environmental companies. ">500 000 TSEK" reads like a typo, '
-            "which is why the draft asks."
+            "Envima (Emma, Anna) have not answered yet. If they hold something clearly outside "
+            "Relement's scope there may be a narrow path — but the conflict stands either way, "
+            "and leaving Marko waiting is worse than telling him now."
         ),
     ),
     Dossier(
-        key="syntari_october",
-        title="Syntari — Philip wants sign-off before he writes to them",
-        counterpart="Philip Hygrell (Ametalis)",
+        key="marten_lunch",
+        title="Mårten Werner — two lunch slots offered",
+        counterpart="Mårten Werner (MVI)",
         severity="medium",
-        age="received 09:20",
+        age="you asked 08:51 · he answered 11:16",
         why=(
-            "Following your decision last night, Philip is ready to write to Syntari — but he is "
-            "checking the framing first, and he has put a date on it: pausing and coming back "
-            "sometime in October. Your own instruction was that this needs a proper review and a "
-            "go/no-go decision, so October is a commitment worth making deliberately rather than "
-            "by default. Nothing goes out until you answer."
+            "He has two gaps: Friday 21/8, or Monday 24/8 (he would prefer 11:45). Straightforward "
+            "pick — but note Friday is now contested: your draft to Daniel Ekholm also proposes "
+            "Friday 12:00, and the AI review lunch vacated Friday without being rebooked."
         ),
         excerpt=(
-            "Då skriver jag ihop något med att vi lägger det lite på is och återkommer någon gång "
-            "i oktober?"
+            "Det är full rulle nu såhär års men jag har ett par luckor för lunch. Antingen nu på "
+            "fredag 21/8 eller måndag 24/8 (gärna 11.45). Funkar någon av de dagarna för dig?"
         ),
-        excerpt_source="Philip Hygrell — Tue 09:20",
-        to=["philip.hygrell@ametalis.com"],
+        excerpt_source="Mårten Werner — Tue 11:16",
+        to=["marten.werner@mvi.se"],
         cc=[],
-        subject="Sv: Syntari x Ametalis",
+        subject="RE: Lunch & strategi-snack",
         draft=(
-            "Hej Philip,\n\n"
-            "Ja, skriv ihop det - men bind oss inte hårt till oktober. Säg att vi återkommer "
-            "efter vår interna review, sannolikt under oktober.\n\n"
-            "Innan det går ut vill jag att vi stämmer av review'en, så vi vet vad vi faktiskt ska "
-            "ha svar på när vi hörs med dem igen. Ta med den punkten till vår sync.\n\n"
-            "// Kim"
+            "Hej Mårten,\n\n"
+            "Allt bra här, tack!\n\n"
+            "Måndag 24/8 kl. 11.45 tar vi - då slipper vi trängseln på fredagen. Säg till om du "
+            "vill att jag bokar plats någonstans.\n\n"
+            "Mvh, Kim"
         ),
         caution=(
-            'Softens October to "after our internal review, probably in October". If you are '
-            "happy to name the month firmly, drop the qualifier."
+            "Picks Monday to keep Friday free for Ekholm. Swap if you would rather see Mårten "
+            "first."
+        ),
+    ),
+    Dossier(
+        key="needo",
+        title="Jonathan Wintzell (Needo) — tried to call, wants lunch",
+        counterpart="Jonathan Wintzell (CEO, Needo)",
+        severity="medium",
+        age="received 11:02",
+        why=(
+            "He tried to reach you by phone and could not get through, then followed up in writing "
+            "asking for a lunch. A missed call plus an unanswered mail is the combination that "
+            "reads as being ignored, so worth a line even if the lunch itself waits."
+        ),
+        excerpt=(
+            "Försökte ringa dig nyss men kom inte fram… Det vore kul att ses över en lunch "
+            "framöver om du har tid?"
+        ),
+        excerpt_source="Jonathan Wintzell — Tue 11:02",
+        to=["jonathan@needo.se"],
+        cc=[],
+        subject="Sv: Ametalis x Needo",
+        draft=(
+            "Hej Jonathan,\n\n"
+            "Tack, och ursäkta att jag inte fångade samtalet - det är fullt just nu.\n\n"
+            "Lunch låter bra. Den här veckan är tät, men skicka gärna ett par förslag från nästa "
+            "vecka och framåt så löser vi det.\n\n"
+            "Mvh, Kim"
         ),
     ),
     Dossier(
