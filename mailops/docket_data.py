@@ -29,45 +29,6 @@ class Dossier:
 
 DOSSIERS: list[Dossier] = [
     Dossier(
-        key="lars_loi",
-        title="Lars Aaen wants the LOI markups today — B&H meeting is tomorrow 13:00",
-        counterpart="Lars Aaen (CEO, Aaen Consult) · cc Niclas Jensen (B&H)",
-        severity="urgent",
-        age="arrived 15:29 · he asked for it today",
-        why=(
-            "He tried your mobile and could not reach you, then wrote. Two things in one mail: he "
-            "is still waiting on your markups to the LOI after the shareholder discussion, and he "
-            "confirms a meeting at Bøgh & Helstrup in Copenhagen at 13:00 CET tomorrow. He asks "
-            "explicitly for the marked-up LOI today so his side can go through it internally "
-            "before you meet. You told him Mon/Tue, and Tuesday afternoon is now here. Niclas "
-            "Jensen at B&H is on copy, so the promise is visible to the counterparty too."
-        ),
-        excerpt=(
-            "It would be world class if we can receive LOI incl. markup´s today, so that we can "
-            "discuss it on beforehand internally with our shareholders, before we meet tomorrow."
-        ),
-        excerpt_source="Lars Aaen — Tue 15:29",
-        to=["lars@aaen-consult.dk"],
-        cc=["nj@bhbr.dk"],
-        subject="Re: LOI and meeting tomorrow",
-        draft=(
-            "Hi Lars,\n\n"
-            "Apologies for the missed calls - it has been a full day.\n\n"
-            "You will have our markups this evening. I am in a call until 18:00 CET and will send "
-            "them straight after, so your shareholders have them well before we meet.\n\n"
-            "And yes - 13:00 tomorrow at Bøgh & Helstrup works. Looking forward to it.\n\n"
-            "Best regards,\n"
-            "Kim"
-        ),
-        caution=(
-            "This commits you to sending the markups tonight, after the 16:30-18:00 Thy SPA call. "
-            "If the shareholder discussion has not actually concluded, change the sentence rather "
-            "than the deadline - a second slipped promise on this thread is worse than saying "
-            "tomorrow morning. Note also that neither this meeting nor the flights are on your "
-            "calendar."
-        ),
-    ),
-    Dossier(
         key="filipovic_pfas",
         title="PFAS reference — Relement is bidding the same tender",
         counterpart="Marko Filipovic (Sellén Filipovic) · via Linus Nilsson, Relement",
@@ -266,81 +227,6 @@ DOSSIERS: list[Dossier] = [
             "None of Wednesday is on your Outlook calendar - not B&H at 13:00, not Norion at "
             "16:00, not the flights. The 11:00-11:30 Implement call still is, and you cannot "
             "take that from a plane. Worth blocking the day before you answer Jens."
-        ),
-    ),
-    Dossier(
-        key="andreas_gap",
-        title="Andreas's GAP analysis lands two days before the Envima board strategy day",
-        counterpart="Andreas Bladh · to you and Mikael Nilsson",
-        severity="high",
-        age="arrived 15:22 · board meeting is Thursday",
-        why=(
-            "He has mapped Envima's strategy input against your Ametalis strategy documents and "
-            "asks whether you share the take-aways. The substance is pointed: Envima's \"perfekta "
-            'kompanjonen" framing is broader than Ametalis wants, integration should be selective '
-            "rather than standard, and the growth model needs a revenue-quality filter - he cites "
-            "11.8 MSEK revenue and 0.1 MSEK EBITA to July, LTM 22.4 MSEK at an 11% margin against "
-            "17% a year earlier, and a 69% billing rate. He ends by recommending a board answer to "
-            '"broad companion or most trusted specialist partner". The timing is what makes this '
-            "urgent rather than reflective: the Envima styrelsemöte STRATEGI is Thursday 20 "
-            "August, 09:00-16:00, and you are on it."
-        ),
-        excerpt=(
-            "Vill Envima vara en bred kompanjon till SME-företag - eller SME-segmentets mest "
-            "betrodda specialistpartner inom miljö och compliance? För att säkerställa "
-            "samstämmighet med Ametalis rekommenderar jag det senare alternativet."
-        ),
-        excerpt_source="Andreas Bladh — Tue 15:22",
-        to=["andreas.bladh@ametalis.com"],
-        cc=["mikael.nilsson@ametalis.com"],
-        subject="Sv: tar tacksamt emot reflektioner och tankar från er på nedan GAP-analys",
-        draft=(
-            "Hej Andreas,\n\n"
-            "Bra genomlysning, och slutfrågan är rätt ställd.\n\n"
-            "Jag återkommer med kommentarer i detalj, men en sak behöver vi lösa först: Envimas "
-            "styrelsemöte om strategi är på torsdag 09:00-16:00 och jag sitter med. Ska den här "
-            "mappningen in där - och i så fall som ditt underlag eller som gruppens position? Det "
-            "avgör hur jag formulerar mig på mötet.\n\n"
-            "Mikael, hör gärna av dig med din syn på intäktskvalitet och debiteringsgrad. Det är "
-            "den delen jag tror bär mest, och siffrorna bör stämmas av mot dina innan de används i "
-            "ett styrelserum.\n\n"
-            "// Kim"
-        ),
-        caution=(
-            "Deliberately does not answer the broad-companion-versus-specialist question for you - "
-            "that is your call and Andreas has already recommended one side. The reply settles "
-            "sequencing instead, which is the part that expires on Thursday."
-        ),
-    ),
-    Dossier(
-        key="eric_edholm",
-        title="Eric Edholm offered to meet in Stockholm tomorrow — you are in Copenhagen",
-        counterpart="Eric Edholm",
-        severity="medium",
-        age="arrived 15:07",
-        why=(
-            "He asks who won the AI outing, whether you should talk priorities and the plan ahead "
-            "this week, and offers to meet in person since he is in Stockholm tomorrow - otherwise "
-            "a phone call. Tomorrow is your Copenhagen day, so the in-person option has to be "
-            "declined rather than left hanging while it is still useful to him."
-        ),
-        excerpt=(
-            "Ska vi snacka lite mer om prioriteringar och planen framåt i veckan? Jag är i "
-            "Stockholm imorgon om du har tid så vi snackas IRL. Annars bokar vi ngt på telefon!"
-        ),
-        excerpt_source="Eric Edholm — Tue 15:07",
-        to=["eric@ericgustaf.com"],
-        cc=[],
-        subject="Re: AI Outing - Top 3 takeaways",
-        draft=(
-            "Hej Eric,\n\n"
-            "Imorgon är jag i Köpenhamn, så IRL får bli en annan gång - synd, hade varit kul.\n\n"
-            "Vi tar telefon istället. Fredag efter lunch eller måndag funkar för mig, säg vad som "
-            "passar dig bäst.\n\n"
-            "// Kim"
-        ),
-        caution=(
-            "He also asked who won the AI outing - add that line yourself, it is not in the thread."
         ),
     ),
     Dossier(
