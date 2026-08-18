@@ -29,45 +29,37 @@ class Dossier:
 
 DOSSIERS: list[Dossier] = [
     Dossier(
-        key="thy_spa",
-        title="Thy SPA — Adilson has tagged you twice for your view",
-        counterpart="Adilson Fonseca (MVI) · Noel Johansen, Max Buchwald, Mårten, Lisa",
-        severity="urgent",
-        age="asked 22:27 and again 22:35 last night",
+        key="syntari_october",
+        title="Syntari — Philip wants sign-off before he writes to them",
+        counterpart="Philip Hygrell (Ametalis)",
+        severity="medium",
+        age="received 09:20",
         why=(
-            "Schjødt's initial markup of the SPA, warranties and Poul Erik's contract landed at "
-            "20:22, with a couple of commercial matters flagged for the check-in. Adilson then "
-            "tagged "
-            "you directly — twice in eight minutes — asking you to review and come back with your "
-            "view so they can conclude the documents. You are the named blocker on a live deal "
-            "document, and that check-in is today."
+            "Following your decision last night, Philip is ready to write to Syntari — but he is "
+            "checking the framing first, and he has put a date on it: pausing and coming back "
+            "sometime in October. Your own instruction was that this needs a proper review and a "
+            "go/no-go decision, so October is a commitment worth making deliberately rather than "
+            "by default. Nothing goes out until you answer."
         ),
         excerpt=(
-            "Would be good if we could check in on this tomorrow as well to see what information "
-            "is outstanding so that we could conclude on these documents. @kim.lehmusvuori, "
-            "appreciate if you could review and get back with your view if anything should be "
-            "added. … @kim.lehmusvuori, anything to add?"
+            "Då skriver jag ihop något med att vi lägger det lite på is och återkommer någon gång "
+            "i oktober?"
         ),
-        excerpt_source="Adilson Fonseca — Mon 22:27 and 22:35",
-        to=["adilson.fonseca@mvi.se"],
-        cc=[
-            "noel.johansen@schjodt.com",
-            "max.buchwald@schjodt.com",
-            "marten.werner@mvi.se",
-            "lisa.reenbom@mvi.se",
-        ],
-        subject="RE: Thy - New employment agreements [SCHJODT--MATTERS.FID1525536]",
+        excerpt_source="Philip Hygrell — Tue 09:20",
+        to=["philip.hygrell@ametalis.com"],
+        cc=[],
+        subject="Sv: Syntari x Ametalis",
         draft=(
-            "Hej Adilson,\n\n"
-            "Jag går igenom Schjødts markup i morse och återkommer med mina punkter före "
-            "avstämningen.\n\n"
-            "Vad gäller de kommersiella frågorna Noel flaggar - låt oss ta dem först på mötet, så "
-            "vi inte fastnar i detaljer innan vi är överens om principerna.\n\n"
-            "Mvh, Kim"
+            "Hej Philip,\n\n"
+            "Ja, skriv ihop det - men bind oss inte hårt till oktober. Säg att vi återkommer "
+            "efter vår interna review, sannolikt under oktober.\n\n"
+            "Innan det går ut vill jag att vi stämmer av review'en, så vi vet vad vi faktiskt ska "
+            "ha svar på när vi hörs med dem igen. Ta med den punkten till vår sync.\n\n"
+            "// Kim"
         ),
         caution=(
-            "Commits you to reading the SPA markup before today's call. You could answer this "
-            "and Adilson's Christer-timing question in one go."
+            'Softens October to "after our internal review, probably in October". If you are '
+            "happy to name the month firmly, drop the qualifier."
         ),
     ),
     Dossier(
@@ -75,11 +67,12 @@ DOSSIERS: list[Dossier] = [
         title="Daniel Ekholm — came back with dates, needs you to pick one",
         counterpart="Daniel Ekholm (KPMG)",
         severity="medium",
-        age="you replied 18:00 · he answered 18:26",
+        age="you replied 18:00 · he answered 18:26 last night",
         why=(
-            "You answered his lunch request at 18:00 and asked when suited him. He offered "
-            "tomorrow or Friday this week, or Monday–Tuesday next week, and asked whether one of "
-            "those works or whether to aim further out. Ball back with you."
+            "You answered his lunch request last night and asked when suited him. He offered today "
+            "or Friday this week, or Monday–Tuesday next week, and asked whether one of "
+            "those works or whether to aim further out. Ball back with you — and one of "
+            "his options is today."
         ),
         excerpt=(
             "Imorgon lr fredag den här veckan, och mån-tis nästa vecka funkar bra för mig. Någon "
@@ -112,10 +105,10 @@ DOSSIERS: list[Dossier] = [
             "dates: 19 or 20 August, or 1 September in Stockholm from ~15:00. He was explicit "
             "that he has no further travel days in August. On 13 August the mail was forwarded "
             "to Mikael but Marcus himself never got a reply — six days of silence from his side. "
-            "The first date he offered, the 19th, is tomorrow, and it is his Denmark day. "
-            "There is also an outstanding promise "
-            "of the digitalisation draft, and a stated wish to meet before the 9 September "
-            "strategy day."
+            "The first date he offered, the 19th, is tomorrow — and that is your Denmark "
+            "day. There "
+            "is also an outstanding promise of the digitalisation draft, and a stated wish "
+            "to meet before the 9 September strategy day."
         ),
         excerpt=(
             "Den 1 september är jag i Stockholm för ett styrelsemöte med Freedom och kan träffas "
@@ -187,35 +180,6 @@ DOSSIERS: list[Dossier] = [
         caution=(
             "Norion is now fixed at 16:00–16:55 at their premises, so Boregruppen needs an "
             "earlier slot or another day. Jens is driving you from the airport via B&H."
-        ),
-    ),
-    Dossier(
-        key="adilson_christer",
-        title="Christer meeting — Adilson proposed a window, needs your yes",
-        counterpart="Adilson Fonseca (MVI) · Thy",
-        severity="medium",
-        age="received 19:59",
-        why=(
-            "This answers the timing question carried on the Thy thread since Friday. Adilson "
-            "expects the agreements done mid-week and proposes early next week for Christer, with "
-            "room to sync with PEJ first. He put it as a question, so it stays open until you "
-            "confirm."
-        ),
-        excerpt=(
-            "Förväntar mig att vi borde vara klara med avtalen i mitten på denna vecka, så kanske "
-            "i början på nästa lär vara lämplig tidpunkt? Kan vara bra att ha lite luft så du "
-            "hinner stämma av med PEJ innan du sätter dig med christer."
-        ),
-        excerpt_source="Adilson Fonseca — Mon 19:59",
-        to=["adilson.fonseca@mvi.se"],
-        cc=[],
-        subject="RE: Thy - New employment agreements",
-        draft=(
-            "Hej Adilson,\n\n"
-            "Låter bra - vi siktar på början av nästa vecka för Christer, så hinner jag stämma av "
-            "med PEJ först.\n\n"
-            "Säg till när avtalen är klara, så bokar jag in det.\n\n"
-            "Mvh, Kim"
         ),
     ),
     Dossier(
